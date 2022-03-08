@@ -13,13 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Main'], function () {
+    Route::get('/', 'IndexController')->name('main.index');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+    Route::get('/', 'IndexController')->name('article.index');
+
+    Route::group(['prefix' => '{article}'], function () {
+        Route::get('/', 'ShowController')->name('article.show');
+    });
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Main'], function () {
