@@ -45,4 +45,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::patch('/{tag}', 'UpdateController')->name('admin.tag.update');
         Route::delete('/{tag}', 'DeleteController')->name('admin.tag.delete');
     });
+
+    Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+        Route::get('/', 'IndexController')->name('admin.article.index');
+        Route::get('/create', 'CreateController')->name('admin.article.create');
+        Route::post('/', 'StoreController')->name('admin.article.store');
+        Route::get('/{article}', 'ShowController')->name('admin.article.show');
+        Route::get('/{article}/edit', 'EditController')->name('admin.article.edit');
+        Route::patch('/{article}', 'UpdateController')->name('admin.article.update');
+        Route::delete('/{article}', 'DeleteController')->name('admin.article.delete');
+    });
 });

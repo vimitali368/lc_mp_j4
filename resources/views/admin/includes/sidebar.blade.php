@@ -42,6 +42,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.article.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard"></i>
+                        <p>
+                            Статьи
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
