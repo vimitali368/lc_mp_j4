@@ -63,4 +63,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::patch('/{article}', 'UpdateController')->name('admin.article.update')->middleware('can:edit articles');
         Route::delete('/{article}', 'DeleteController')->name('admin.article.delete')->middleware('can:delete articles');
     });
+
+    Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'middleware' => 'role:administrator-user'], function () {
+        Route::get('/author', 'AuthorController')->name('admin.statistics.author');
+    });
 });

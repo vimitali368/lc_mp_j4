@@ -22,7 +22,7 @@ class CreateAuthorUserSeeder extends Seeder
             'email' => 'author@author.loc'
         ], [
             'email' => 'author@author.loc',
-            'name' => 'Editor',
+            'name' => 'Author',
             'password' => Hash::make('123123123'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
