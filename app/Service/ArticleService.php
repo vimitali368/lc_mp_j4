@@ -16,7 +16,7 @@ class ArticleService
 //            unset($data['tag_ids']);
 //        dd($tagIds);
             $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
-//            dd($data['preview_image']);
+            //            dd($data['preview_image']);
             $article = Article::firstOrCreate($data);
 //            $article->tags()->attach($tagIds);
             Db::commit();

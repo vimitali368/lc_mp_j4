@@ -27,7 +27,8 @@
                 <form action="{{ route('admin.article.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group w-25">
-                        <input type="text" class="form-control" name="title" placeholder="Заголовок">
+                        <input type="text" class="form-control" name="title" placeholder="Заголовок"
+                               value="{{ old('title') }}">
                         @error('title')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror

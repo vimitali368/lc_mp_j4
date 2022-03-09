@@ -28,6 +28,7 @@ class StoreRequest extends FormRequest
             'description' => 'nullable|string',
             'content' => 'nullable|string',
             'preview_image' => 'nullable|file',
+            'user_id' => 'nullable|numeric',
         ];
     }
 
@@ -39,6 +40,8 @@ class StoreRequest extends FormRequest
             'description.string' => 'Данные должны соответствовать строчному типу',
             'content.string' => 'Данные должны соответствовать строчному типу',
             'preview_image.file' => 'Необходимо выбрать файл',
+            'user_id.required' => 'Это поле необходимо для заполнения',
+            'user_id.numeric' => 'Данные должны соответствовать числовому типу',
         ];
     }
 }

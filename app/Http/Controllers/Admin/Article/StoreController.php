@@ -8,8 +8,10 @@ class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
+//        dd($request);
+        $data['user_id'] = auth()->user()->id;
+//        dd($data['user_id']);
         $data = $request->validated();
-//        dd($data);
         $this->service->store($data);
 
 //        Article::firstOrCreate($data);
