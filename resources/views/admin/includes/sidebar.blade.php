@@ -54,14 +54,16 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.statistics.author') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Статистика
-                        </p>
-                    </a>
-                </li>
+                @if(auth()->user()->hasRole('administrator-user'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.statistics.author') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Статистика
+                            </p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
