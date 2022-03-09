@@ -55,12 +55,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     });
 
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
-        Route::get('/', 'IndexController')->name('admin.article.index');
-        Route::get('/create', 'CreateController')->name('admin.article.create');
-        Route::post('/', 'StoreController')->name('admin.article.store');
-        Route::get('/{article}', 'ShowController')->name('admin.article.show');
-        Route::get('/{article}/edit', 'EditController')->name('admin.article.edit');
-        Route::patch('/{article}', 'UpdateController')->name('admin.article.update');
-        Route::delete('/{article}', 'DeleteController')->name('admin.article.delete');
+        Route::get('/', 'IndexController')->name('admin.article.index')->middleware('role:administrator-user|editor-user|author-user');
+        Route::get('/create', 'CreateController')->name('admin.article.create')->middleware('can:add articles');
+        Route::post('/', 'StoreController')->name('admin.article.store')->middleware('can:add articles');
+        Route::get('/{article}', 'ShowController')->name('admin.article.show')->middleware('can:show articles');
+        Route::get('/{article}/edit', 'EditController')->name('admin.article.edit')->middleware('can:edit articles');
+        Route::patch('/{article}', 'UpdateController')->name('admin.article.update')->middleware('can:edit articles');
+        Route::delete('/{article}', 'DeleteController')->name('admin.article.delete')->middleware('can:delete articles');
     });
 });

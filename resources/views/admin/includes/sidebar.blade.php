@@ -16,7 +16,11 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Админ</a>
+                <a href="#" class="d-block">
+                    {{ auth()->user()->hasRole('administrator-user') ? 'Админ' : '' }}
+                    {{ auth()->user()->hasRole('editor-user') ? 'Редактор' : '' }}
+                    {{ auth()->user()->hasRole('author-user') ? 'Писатель' : '' }}
+                </a>
             </div>
         </div>
 

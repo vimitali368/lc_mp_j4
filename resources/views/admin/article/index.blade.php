@@ -22,12 +22,14 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-2 mb-3">
-                    <a href="{{ route('admin.article.create') }}" type="button"
-                       class="btn btn-block btn-primary">Добавить</a>
+            @if(auth()->user()->can('add articles'))
+                <div class="row">
+                    <div class="col-2 mb-3">
+                        <a href="{{ route('admin.article.create') }}" type="button"
+                           class="btn btn-block btn-primary">Добавить</a>
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -48,22 +50,28 @@
                                         <td>{{ $article->id }}</td>
                                         <td>{{ $article->title }}</td>
                                         <td>{{ $article->description }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('admin.article.show', $article->id) }}"><i
-                                                    class="far fa-eye"></i></a></td>
-                                        <td class="text-center">
-                                            <a href="{{ route('admin.article.edit', $article->id) }}"
-                                               class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
-                                        <td>
-                                            <form action="{{ route('admin.article.delete', $article->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash text-danger" role="button"></i>
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @if(auth()->user()->can('show articles'))
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.article.show', $article->id) }}"><i
+                                                        class="far fa-eye"></i></a></td>
+                                        @endif
+                                        @if(auth()->user()->can('edit articles'))
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.article.edit', $article->id) }}"
+                                                   class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
+                                        @endif
+                                        @if(auth()->user()->can('delete articles'))
+                                            <td>
+                                                <form action="{{ route('admin.article.delete', $article->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <i class="fas fa-trash text-danger" role="button"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
