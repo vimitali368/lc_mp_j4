@@ -20,8 +20,8 @@ class AuthorController extends Controller
         $data['articlesCount'] = Article::all()->count();
 //        $data['categoriesCount'] = Category::all()->count();
 //        $data['tagsCount'] = Tag::all()->count();
-        $data['users'] = User::role(['author-user'])->paginate(6);
-        return view('admin.statistics.author', compact('data'));
+        $users = User::role(['author-user'])->paginate(6);
+        return view('admin.statistics.author', compact('data', 'users'));
     }
 
 }

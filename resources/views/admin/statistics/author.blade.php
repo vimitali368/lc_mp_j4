@@ -113,34 +113,34 @@
                                                     <th class="sorting sorting_asc" tabindex="0"
                                                         aria-controls="example2" rowspan="1" colspan="1"
                                                         aria-sort="ascending"
-                                                        aria-label="Rendering engine: activate to sort column descending">
+                                                        aria-label="Пользователь: нажмите чтобы отсортировать столбец">
                                                         Пользователь
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        aria-label="Статей: нажмите чтобы отсортировать столбец">
                                                         Статей
                                                     </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
 
-                                                @foreach($data['users'] as $user)
+                                                @foreach($users as $user)
                                                     <tr>
                                                         <td class="dtr-control sorting_1" tabindex="0">{{ $user->name }}</td>
                                                         <td>{{ $user->articles()->count() }}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <th rowspan="1" colspan="1">Пользователь</th>
-                                                    <th rowspan="1" colspan="1">Статей</th>
-                                                </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="mx-auto" style="margin-top: -100px;">
+                                            {{ $users->links() }}
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-sm-12 col-md-5">
                                             <div class="dataTables_info" id="example2_info" role="status"

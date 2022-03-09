@@ -20,6 +20,7 @@ class PermissionsSeeder extends Seeder
             'add articles',
             'edit articles',
             'delete articles',
+            'add comments',
         ];
 
         foreach ($permissions as $permission) {
