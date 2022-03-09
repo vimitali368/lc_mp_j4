@@ -15,6 +15,9 @@ class AddColumnUserIdToArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->index('user_id', 'article_user_idx');
+            $table->foreign('user_id', 'article_user_fk')->on('users')->references('id');
         });
     }
 
@@ -26,6 +29,9 @@ class AddColumnUserIdToArticlesTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
+            $table->dropForeign('article_user_fk');
+            $table->dropIndex('article_user_idx');
+
             $table->dropColumn('user_id');
         });
     }
