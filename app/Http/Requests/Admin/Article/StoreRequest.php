@@ -22,8 +22,7 @@ class StoreRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
+    {   return [
             'title' => 'required|string',
             'description' => 'nullable|string',
             'content' => 'nullable|string',
@@ -40,7 +39,6 @@ class StoreRequest extends FormRequest
             'description.string' => 'Данные должны соответствовать строчному типу',
             'content.string' => 'Данные должны соответствовать строчному типу',
             'preview_image.file' => 'Необходимо выбрать файл',
-            'user_id.required' => 'Это поле необходимо для заполнения',
             'user_id.numeric' => 'Данные должны соответствовать числовому типу',
         ];
     }
