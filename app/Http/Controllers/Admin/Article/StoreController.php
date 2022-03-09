@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Article;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Article\StoreRequest;
-use App\Models\Article;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        Article::firstOrCreate($data);
+//        dd($data);
+        $this->service->store($data);
+
+//        Article::firstOrCreate($data);
         return redirect()->route('admin.article.index');
     }
 }

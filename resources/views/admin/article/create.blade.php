@@ -23,29 +23,43 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row ml-3">
-                <form action="{{ route('admin.article.store') }}" method="POST" class="w-25">
+            <div class="container-fluid">
+                <form action="{{ route('admin.article.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group w-25">
                         <input type="text" class="form-control" name="title" placeholder="Заголовок">
                         @error('title')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="description" placeholder="Описание">
+                        <input type="text" class="form-control" name="description" placeholder="Описание"
+                               value="{{ old('description') }}">
                         @error('description')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="content" placeholder="Содержимое">
+                    <div class="form-group w-100">
+                        <textarea id="summernote" name="content"
+                                  placeholder="Содержимое">{{ old('content') }}</textarea>
                         @error('content')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="preview_image" placeholder="Изображение для статьи">
+                    @if(old('preview_image'))
+                        @dd(old('preview_image'))
+                    @endif
+                    <div class="form-group w-50">
+                        <label>Изображение для статьи</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="preview_image">
+                                <label class="custom-file-label">Выберите изображение</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Загрузить</span>
+                            </div>
+                        </div>
                         @error('preview_image')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror

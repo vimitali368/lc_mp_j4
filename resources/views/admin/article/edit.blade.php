@@ -23,12 +23,12 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row ml-3">
-                <form action="{{ route('admin.article.update', $article->id ) }}" method="POST" class="w-25">
+            <div class="container-fluid">
+                <form action="{{ route('admin.article.update', $article->id ) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group">
-                        <input type="text" class="form-control" name="title" placeholder="Заголовок"
+                        <input type="text" class="form-control w-25" name="title" placeholder="Заголовок"
                                value="{{ $article->title }}">
                         @error('title')
                         <div class=" text-danger">{{ $message }}</div>
@@ -36,21 +36,36 @@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="description" placeholder="Описание"
-                               value="{{ $article->description }}">
+                               value="{{ $article->description ?? old('description') }}">
                         @error('description')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="content" placeholder="Сожержимое статьи"
-                               value="{{ $article->content }}">
+                    <div class="form-group w-100">
+                        <textarea id="summernote" name="content" placeholder="Сожержимое статьи">
+                            {{ $article->content ?? old('content') }}
+                        </textarea>
                         @error('content')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="preview_image" placeholder="Изображение для статьи"
-                               value="{{ $article->preview_image }}">
+                    <div class="form-group w-50">
+                        <label>Изображение для статьи</label>
+                        @if(isset($article->preview_image))
+                            <div class="w-25">
+                                <img src="{{ url('storage/' . $article->preview_image) }}" alt="preview_image"
+                                     class="w-50">
+                            </div>
+                        @endif
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="preview_image">
+                                <label class="custom-file-label">Выберите изображение</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Загрузить</span>
+                            </div>
+                        </div>
                         @error('preview_image')
                         <div class=" text-danger">{{ $message }}</div>
                         @enderror
