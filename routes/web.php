@@ -20,13 +20,15 @@ Route::group(['namespace' => 'Main'], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     Route::get('/', 'IndexController')->name('article.index');
 
     Route::group(['prefix' => '{article}'], function () {
         Route::get('/', 'ShowController')->name('article.show');
+    });
+
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+        Route::post('/', 'StoreController')->name('article.comment.store');
     });
 });
 

@@ -12,4 +12,9 @@ class Article extends Model
 
     protected $table = 'articles';
     protected $guarded = false;
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'article_id', 'id');
+    }
 }
