@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterCaptchaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,3 +69,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::get('/author', 'AuthorController')->name('admin.statistics.author');
     });
 });
+
+Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);

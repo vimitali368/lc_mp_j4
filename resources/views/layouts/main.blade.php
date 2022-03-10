@@ -18,7 +18,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="{{ asset('/') }}"><img src="{{ asset('assets/images/logo.svg') }}"
-                                                                          alt="Edica"></a>
+                                                                 alt="Edica"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav"
                     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,14 +31,19 @@
                     {{--                    <li class="nav-item ">--}}
                     {{--                        <a class="nav-link" href="{{ route('category.index') }}">Категории</a>--}}
                     {{--                    </li>--}}
-                    <li class="nav-item ">
-                        {{--                        @auth()--}}
-                        {{--                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>--}}
-                        {{--                        @endauth--}}
-                        @guest()
+                    @guest()
+                        <li class="nav-item ">
+                            {{--                        @auth()--}}
+                            {{--                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>--}}
+                            {{--                        @endauth--}}
                             <a class="nav-link" href="/login">Войти</a>
-                        @endguest
-                    </li>
+                        </li>
+                    @endguest
+                    @guest()
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/register">Регистрация</a>
+                        </li>
+                    @endguest
                     @auth()
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
