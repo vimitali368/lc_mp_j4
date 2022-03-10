@@ -17,8 +17,7 @@
 <header class="edica-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{ asset('/') }}"><img src="{{ asset('assets/images/logo.svg') }}"
-                                                                 alt="Edica"></a>
+            <a class="navbar-brand" href="{{ asset('/') }}">BOKO</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav"
                     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,24 +62,13 @@
         <div class="row footer-widget-area">
             <div class="col-md-3">
                 <a href="{{ asset('/') }}" class="footer-brand-wrapper">
-                    <img src="{{ asset('assets/images/logo.svg') }}" alt="">
+                    BOKO
                 </a>
                 <p class="contact-details">hello@voco.loc</p>
                 <p class="contact-details">+7 999 77 000 00</p>
-                <nav class="footer-social-links">
-                    <a href="{{ asset('#!') }}"><i class="fab fa-facebook-f"></i></a>
-                    <a href="{{ asset('#!') }}"><i class="fab fa-twitter"></i></a>
-                    <a href="{{ asset('#!') }}"><i class="fab fa-behance"></i></a>
-                    <a href="{{ asset('#!') }}"><i class="fab fa-dribbble"></i></a>
-                </nav>
             </div>
         </div>
         <div class="footer-bottom-content">
-            <nav class="nav footer-bottom-nav">
-                <a href="{{ asset('#!') }}">Privacy & Policy</a>
-                <a href="{{ asset('#!') }}">Terms</a>
-                <a href="{{ asset('#!') }}">Site Map</a>
-            </nav>
             <p class="mb-0">© Воко. 2022. All rights reserved.</p>
         </div>
     </div>
