@@ -56,7 +56,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     });
 
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
-        Route::get('/', 'IndexController')->name('admin.article.index')->middleware('role:administrator-user|editor-user|author-user');
+        Route::get('/', 'IndexController')->name('admin.article.index')->middleware('role:administrator-user|editor-user|author-user|reader-user');
         Route::get('/create', 'CreateController')->name('admin.article.create')->middleware('can:add articles');
         Route::post('/', 'StoreController')->name('admin.article.store')->middleware('can:add articles');
         Route::get('/{article}', 'ShowController')->name('admin.article.show')->middleware('can:show articles');

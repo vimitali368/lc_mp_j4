@@ -9,7 +9,8 @@
                     @foreach($articles as $article)
                         <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
                             <div class="blog-post-thumbnail-wrapper">
-                                <img src="{{ 'storage/' . $article->preview_image }}" alt="blog post">
+                                <img src="{{ asset('storage/' . $article->preview_image ) }}" alt="blog post">
+{{--                                <img src="{{ url('storage/' . $article->preview_image) }}" alt="blog post">--}}
                             </div>
 {{--                            <p class="blog-post-category">{{ $article->category->title }}</p>--}}
                             <a href="{{ route('article.show', $article->id) }}" class="blog-post-permalink">

@@ -5,7 +5,7 @@
         <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Журналистское агентство "Воко"</span>
+        <span class="brand-text font-weight-light">Платформа "Воко"</span>
     </a>
 
     <!-- Sidebar -->
@@ -20,6 +20,7 @@
                     {{ auth()->user()->hasRole('administrator-user') ? 'Админ' : '' }}
                     {{ auth()->user()->hasRole('editor-user') ? 'Редактор' : '' }}
                     {{ auth()->user()->hasRole('author-user') ? 'Писатель' : '' }}
+                    {{ auth()->user()->hasRole('reader-user') ? 'Читатель' : '' }}
                 </a>
             </div>
         </div>
@@ -30,6 +31,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                @if(!auth()->user()->hasRole('reader-user'))
                 <li class="nav-item">
                     <a href="{{ route('admin.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
@@ -46,6 +48,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.article.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-clipboard"></i>

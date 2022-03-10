@@ -24,7 +24,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('admin.article.update', $article->id ) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.article.update', $article->id ) }}" method="POST"
+                      enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group">
@@ -53,7 +54,15 @@
                         <label>Изображение для статьи</label>
                         @if(isset($article->preview_image))
                             <div class="w-25">
-                                <img src="{{ url('storage/' . $article->preview_image) }}" alt="preview_image"
+                                <img src="{{ url( '/storage/'. $article->preview_image )  }}" alt="preview_image"
+                                     class="w-50">
+                            </div>
+                            <div class="w-25">
+                                <img src="{{ url( $article->preview_image ) }}" alt="preview_image"
+                                     class="w-50">
+                            </div>
+                            <div class="w-25">
+                                <img src="{{ url( 'storage/' . $article->preview_image ) }}" alt="preview_image"
                                      class="w-50">
                             </div>
                         @endif
