@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/aos/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        .reload {
+            font-family: Lucida Sans Unicode
+        }
+    </style>
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/loader.js') }}"></script>
 </head>
@@ -80,6 +89,15 @@
 <script>
     AOS.init({
         duration: 1000
+    });
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'register-reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
     });
 </script>
 </body>
