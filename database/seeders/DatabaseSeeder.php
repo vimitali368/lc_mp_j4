@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CreateAdministratorUserSeeder::class,
             CreateEditorUserSeeder::class,
             CreateAuthorUserSeeder::class,
+            CreateModeratorUserSeeder::class,
             CreateReaderUserSeeder::class,
         ]);
     }

@@ -21,6 +21,7 @@
                     {{ auth()->user()->hasRole('editor-user') ? 'Редактор' : '' }}
                     {{ auth()->user()->hasRole('author-user') ? 'Писатель' : '' }}
                     {{ auth()->user()->hasRole('reader-user') ? 'Читатель' : '' }}
+                    {{ auth()->user()->hasRole('moderator-user') ? 'Модератор' : '' }}
                 </a>
             </div>
         </div>
@@ -54,6 +55,14 @@
                         <i class="nav-icon fas fa-clipboard"></i>
                         <p>
                             Статьи
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.comment.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Комментарии
                         </p>
                     </a>
                 </li>

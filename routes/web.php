@@ -71,6 +71,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::get('/author', 'AuthorController')->name('admin.statistics.author');
         Route::get('/reader', 'ReaderController')->name('admin.statistics.reader');
     });
+
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+        Route::get('/', 'IndexController')->name('admin.comment.index')->middleware('role:administrator-user|moderator-user');
+        Route::get('/{comment}/edit', 'EditController')->name('admin.comment.edit')->middleware('can:edit comments');
+        Route::patch('/{comment}', 'UpdateController')->name('admin.comment.update')->middleware('can:edit comments');
+        Route::delete('/{comment}', 'DeleteController')->name('admin.comment.delete')->middleware('can:delete comments');
+    });
+
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);
