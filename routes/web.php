@@ -69,6 +69,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
     Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'middleware' => 'role:administrator-user'], function () {
         Route::get('/author', 'AuthorController')->name('admin.statistics.author');
+        Route::get('/reader', 'ReaderController')->name('admin.statistics.reader');
     });
 });
 

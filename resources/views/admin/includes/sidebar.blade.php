@@ -32,22 +32,22 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 @if(!auth()->user()->hasRole('reader-user'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.category.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Категории
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.tag.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tags"></i>
-                        <p>
-                            Тэги
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.category.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Категории
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.tag.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>
+                                Тэги
+                            </p>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.article.index') }}" class="nav-link">
@@ -59,12 +59,29 @@
                 </li>
                 @if(auth()->user()->hasRole('administrator-user'))
                     <li class="nav-item">
-                        <a href="{{ route('admin.statistics.author') }}" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 Статистика
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.statistics.author') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-pen"></i>
+                                    <p>
+                                        Писатели
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.statistics.reader') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-glasses"></i>
+                                    <p>Читатели</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
             </ul>
