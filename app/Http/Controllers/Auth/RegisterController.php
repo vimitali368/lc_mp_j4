@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\User\RegisterMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
@@ -81,6 +83,9 @@ class RegisterController extends Controller
         ]);
         $role->givePermissionTo('add comments');
         $user->assignRole([$role->id]);
+        // Отправка почты о регистрации
+        $clientEmail = $user->email;
+        Mail::to($clientEmail)->send(new RegisterMail());
         return $user;
     }
 }
