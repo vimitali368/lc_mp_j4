@@ -35,7 +35,7 @@ class CreateModeratorUserSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        $role->givePermissionTo('edit comments', 'delete comments');
+        $role->givePermissionTo('edit comments', 'delete comments', 'ban commentators');
         $user->assignRole([$role->id]);
     }
 }

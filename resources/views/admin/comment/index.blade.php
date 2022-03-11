@@ -30,20 +30,17 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th >ID</th>
+                                    <th colspan="3" class="text-center">Действия</th>
                                     <th>Сообщение</th>
                                     <th>ID пользователя</th>
                                     <th>ID статьи</th>
-                                    <th colspan="2" class="text-center">Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($comments as $comment)
                                     <tr>
                                         <td>{{ $comment->id }}</td>
-                                        <td>{{ $comment->message }}</td>
-                                        <td>{{ $comment->user_id }}</td>
-                                        <td>{{ $comment->article_id }}</td>
                                         @if(auth()->user()->can('edit comments'))
                                             <td class="text-center"><a
                                                     href="{{ route('admin.comment.edit', $comment->id) }}"
@@ -61,6 +58,18 @@
                                                 </form>
                                             </td>
                                         @endif
+                                        @if(auth()->user()->can('ban commentators'))
+{{--                                                    class="{{ $comment->user()->can('banned') ? 'text-success' : 'text-danger' }}">--}}
+                                            <td class="text-center"><a
+                                                    href="{{ route('admin.user.ban', $comment->user_id) }}"
+                                                    class="text-danger">
+                                                    <i class="fas fa-comment-slash"></i>
+                                                </a>
+                                            </td>
+                                        @endif
+                                        <td>{{ $comment->message }}</td>
+                                        <td>{{ $comment->user_id }}</td>
+                                        <td>{{ $comment->article_id }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

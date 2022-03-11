@@ -36,7 +36,7 @@
                                     <p>Читатели</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-glasses"></i>
                                 </div>
                                 {{--                            <a href="{{ route('admin.user.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                             </div>
@@ -50,7 +50,7 @@
                                     <p>Комментарии</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-clipboard"></i>
+                                    <i class="fas fa-comments"></i>
                                 </div>
                                 {{--                                --}}{{--                            <a href="{{ route('admin.post.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                             </div>
@@ -119,7 +119,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Статей: нажмите чтобы отсортировать столбец">
-                                                        Статей
+                                                        Комментарии
                                                     </th>
                                                 </tr>
                                                 </thead>
@@ -129,7 +129,7 @@
                                                     <tr>
                                                         <td class="dtr-control sorting_1"
                                                             tabindex="0">{{ $user->name }}</td>
-                                                        <td>{{ $user->articles()->count() }}</td>
+                                                        <td>{{ $user->comments()->count() }}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

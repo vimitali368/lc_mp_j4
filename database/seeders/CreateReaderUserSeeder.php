@@ -36,6 +36,7 @@ class CreateReaderUserSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
         $role->givePermissionTo('show articles');
+        $user->givePermissionTo('add comments');
         $user->assignRole([$role->id]);
     }
 }

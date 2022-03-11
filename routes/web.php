@@ -81,6 +81,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
         Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/{user}/ban', 'BanController')->name('admin.user.ban')->middleware('can:ban commentators');
         Route::get('/banned', 'BannedController')->name('admin.user.banned');
     });
 
