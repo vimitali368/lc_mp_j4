@@ -58,26 +58,29 @@
                                             <textarea name="message" class="form-control"
                                                       placeholder="Напишите здесь ваш комментарий!"
                                                       rows="10"></textarea>
+                                            @error('message')
+                                            <div class=" text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label class="col-md-2 col-form-label text-md-end">Защита от спама</label>
+{{--                                    <div class="row">--}}
                                         <div class="form-group">
                                             <div class="captcha">
+                                            <label class="col-md-6 col-form-label text-md-end">Защита от спама</label>
+                                                <span class="md-3">{!! captcha_img() !!}</span>
                                                 <button type="button" class="btn btn-danger" class="reload" id="reload">
                                                     &#x21bb;
                                                 </button>
-                                                <span class="ml-3">{!! captcha_img() !!}</span>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
                                             <input id="captcha" type="text" class="form-control"
                                                    placeholder="Введите ответ" name="captcha">
                                             @error('captcha')
                                             <div class=" text-danger">{{ $message }}</div>
                                             @enderror
+                                            <div class="col-md-4">
+                                            </div>
                                         </div>
-                                    </div>
+{{--                                    </div>--}}
                                     <div class="form-group">
                                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     </div>

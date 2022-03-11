@@ -11,11 +11,8 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
-//        dd($article);
-//        $data['user_id'] = auth()->user()->id;
-//        $data['article_id']= $article->id;
         $data = $request->validated();
-//        dd($data);
+        unset($data['captcha']);
         Comment::firstOrCreate($data);
         return redirect()->route('article.show', $data['article_id']);
     }

@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     Route::get('/', 'IndexController')->name('article.index');
+    Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\CaptchaController::class, 'reloadCaptcha']);
 
     Route::group(['prefix' => '{article}'], function () {
         Route::get('/', 'ShowController')->name('article.show');
@@ -88,4 +89,3 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);
-Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\StoreCaptchaController::class, 'reloadCaptcha']);

@@ -27,6 +27,21 @@ class StoreRequest extends FormRequest
             'message' => 'required|string',
             'user_id' => 'required|numeric',
             'article_id' => 'required|numeric',
+            'captcha' => 'required|captcha',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'message.required' => 'Это поле необходимо для заполнения',
+            'message.string' => 'Данные должны соответствовать строчному типу',
+            'user_id.required' => 'Это поле необходимо для заполнения',
+            'user_id.numeric' => 'Данные должны соответствовать числовому типу',
+            'article_id.required' => 'Это поле необходимо для заполнения',
+            'article_id.numeric' => 'Данные должны соответствовать числовому типу',
+            'captcha.required' => 'Это поле необходимо для заполнения',
+            'captcha.captcha' => 'Введённые данные не соответствовуют данным на картинке',
         ];
     }
 }
