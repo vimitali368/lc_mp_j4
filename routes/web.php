@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     });
 
     Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
-        Route::post('/', 'StoreController')->name('article.comment.store');
+        Route::post('/', 'StoreController')->name('article.comment.store')->middleware('can:add comments');
     });
 });
 

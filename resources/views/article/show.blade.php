@@ -46,51 +46,53 @@
                         @endforeach
                     </section>
                     @auth()
-                        {{--                        @dd($article->id))--}}
-                        <section class="comment-section">
-                            <h2 class="section-title mb-5" data-aos="fade-up">Оставить комментарий</h2>
-                            <form action="{{ route('article.comment.store', $article->id) }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="form-group col-12" data-aos="fade-up">
-                                        <label class="sr-only">Комментарий</label>
-                                        <textarea name="message" class="form-control"
-                                                  placeholder="Напишите здесь ваш комментарий!"
-                                                  rows="10"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-md-2 col-form-label text-md-end">Защита от спама</label>
-                                    <div class="form-group">
-                                        <div class="captcha">
-                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
-                                                &#x21bb;
-                                            </button>
-                                            <span class="ml-3">{!! captcha_img() !!}</span>
+                        @if(auth()->user()->can('add comments'))
+                            {{--                        @dd($article->id))--}}
+                            <section class="comment-section">
+                                <h2 class="section-title mb-5" data-aos="fade-up">Оставить комментарий</h2>
+                                <form action="{{ route('article.comment.store', $article->id) }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="form-group col-12" data-aos="fade-up">
+                                            <label class="sr-only">Комментарий</label>
+                                            <textarea name="message" class="form-control"
+                                                      placeholder="Напишите здесь ваш комментарий!"
+                                                      rows="10"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <input id="captcha" type="text" class="form-control"
-                                               placeholder="Введите ответ" name="captcha">
-                                        @error('captcha')
-                                        <div class=" text-danger">{{ $message }}</div>
-                                        @enderror
+                                    <div class="row mb-3">
+                                        <label class="col-md-2 col-form-label text-md-end">Защита от спама</label>
+                                        <div class="form-group">
+                                            <div class="captcha">
+                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                    &#x21bb;
+                                                </button>
+                                                <span class="ml-3">{!! captcha_img() !!}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input id="captcha" type="text" class="form-control"
+                                                   placeholder="Введите ответ" name="captcha">
+                                            @error('captcha')
+                                            <div class=" text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" name="article_id" value="{{ $article->id }}">
-                                </div>
-                                <div class="row">
-                                    <div class="col-12" data-aos="fade-up">
-                                        <input type="submit" value="Отправить комментарий"
-                                               class="btn btn-warning">
+                                    <div class="form-group">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     </div>
-                                </div>
-                            </form>
-                        </section>
+                                    <div class="form-group">
+                                        <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" data-aos="fade-up">
+                                            <input type="submit" value="Отправить комментарий"
+                                                   class="btn btn-warning">
+                                        </div>
+                                    </div>
+                                </form>
+                            </section>
+                        @endif
                     @endauth
                 </div>
             </div>
