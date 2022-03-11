@@ -79,6 +79,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::delete('/{comment}', 'DeleteController')->name('admin.comment.delete')->middleware('can:delete comments');
     });
 
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+        Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/banned', 'BannedController')->name('admin.user.banned');
+    });
+
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);

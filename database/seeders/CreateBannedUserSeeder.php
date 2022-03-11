@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class CreateModeratorUserSeeder extends Seeder
+class CreateBannedUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,23 +19,24 @@ class CreateModeratorUserSeeder extends Seeder
     public function run()
     {
         $user = User::firstOrCreate([
-            'email' => 'moderator@moderator.loc'
+            'email' => 'banned@banned.loc'
         ], [
-            'email' => 'moderator@moderator.loc',
-            'name' => 'Moderator',
+            'email' => 'banned@banned.loc',
+            'name' => 'Banned',
             'password' => Hash::make('123123123'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         $role = Role::firstOrCreate([
-            'name' => 'moderator-user'
+            'name' => 'reader-user'
         ], [
-            'name' => 'moderator-user',
+            'name' => 'reader-user',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        $role->givePermissionTo('edit comments', 'delete comments');
+        $role->givePermissionTo('show articles');
+        $user->givePermissionTo('banned');
         $user->assignRole([$role->id]);
     }
 }

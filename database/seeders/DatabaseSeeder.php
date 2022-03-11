@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CreateAuthorUserSeeder::class,
             CreateModeratorUserSeeder::class,
             CreateReaderUserSeeder::class,
+            CreateBannedUserSeeder::class,
         ]);
     }
 }

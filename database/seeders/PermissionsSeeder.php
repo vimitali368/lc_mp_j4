@@ -23,6 +23,7 @@ class PermissionsSeeder extends Seeder
             'add comments',
             'edit comments',
             'delete comments',
+            'banned',
         ];
 
         foreach ($permissions as $permission) {
