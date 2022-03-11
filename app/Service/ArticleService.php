@@ -17,6 +17,7 @@ class ArticleService
 //        dd($tagIds);
             if (isset($data['preview_image'])) {
                 $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+                $data['preview_image'] = url('/storage/' . $data['preview_image']);
             }
             //            dd($data['preview_image']);
             $article = Article::firstOrCreate($data);
@@ -42,7 +43,7 @@ class ArticleService
             if (isset($data['preview_image'])) {
 //                dd($data['preview_image'] );
                 $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
-//                dd($data['preview_image'] );
+                $data['preview_image'] = url('/storage/' . $data['preview_image']);
             }
 //            dd($data);
             $article->update($data);

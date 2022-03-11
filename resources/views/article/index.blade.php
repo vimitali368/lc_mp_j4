@@ -10,7 +10,7 @@
                         <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
                             <a href="{{ route('article.show', $article->id) }}" class="blog-post-permalink">
                                 <div class="blog-post-thumbnail-wrapper">
-                                    <img src="{{ asset('storage/' . $article->preview_image ) }}" alt="blog post">
+                                    <img src="{{ $article->preview_image }}" alt="blog post">
                                 </div>
                                 {{--                            <p class="blog-post-category">{{ $article->category->title }}</p>--}}
                                 <h6 class="blog-post-title">{{ $article->title }}</h6>
@@ -19,7 +19,7 @@
                     @endforeach
                 </div>
                 <div class="row">
-                    <div class="mx-auto" style="margin-top: -100px;">
+                    <div class="mx-auto" style="margin-bottom: 100px;">
                         {{ $articles->links() }}
                     </div>
                 </div>

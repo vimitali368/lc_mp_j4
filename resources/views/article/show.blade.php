@@ -9,7 +9,7 @@
                 {{ $article->comments->count() }} Комментария
             </p>
             <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
-                <img src="{{ asset('storage/' . $article->preview_image) }}" alt="featured image" class="w-100">
+                <img src="{{ $article->preview_image }}" alt="featured image" class="w-100">
             </section>
             <section class="post-content">
                 <div class="row">
