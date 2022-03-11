@@ -88,3 +88,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);
+Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\StoreCaptchaController::class, 'reloadCaptcha']);

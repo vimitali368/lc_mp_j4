@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        $role->givePermissionTo('add comments');
+        $user->givePermissionTo('add comments');
         $user->assignRole([$role->id]);
         // Отправка почты о регистрации
         $clientEmail = $user->email;

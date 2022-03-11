@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Журналистское агентство "Воко"</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/aos/aos.css') }}">
@@ -86,14 +89,14 @@
 <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/aos/aos.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
-<script>
+<script type="text/javascript">
     AOS.init({
         duration: 1000
     });
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'register-reload-captcha',
+            url: 'comment-reload-captcha',
             success: function (data) {
                 $(".captcha span").html(data.captcha);
             }
