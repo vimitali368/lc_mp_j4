@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $comments = Comment::all();
+        $comments = Comment::paginate(6);
         return view('admin.comment.index', compact('comments'));
     }
 

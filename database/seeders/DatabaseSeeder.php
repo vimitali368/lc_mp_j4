@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Article::factory(40)->create();
+        Comment::factory(400)->create();
 
     }
 }

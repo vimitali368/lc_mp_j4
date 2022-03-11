@@ -71,6 +71,11 @@
                         </div>
 
                     </div>
+                    <div class="row">
+                        <div class="mx-auto">
+                            {{ $users->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

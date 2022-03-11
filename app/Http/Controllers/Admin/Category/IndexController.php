@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(6);
         return view('admin.category.index', compact('categories'));
     }
 }

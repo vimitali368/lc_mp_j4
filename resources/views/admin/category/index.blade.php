@@ -68,6 +68,11 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="mx-auto">
+                            {{ $categories->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

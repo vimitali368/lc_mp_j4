@@ -9,7 +9,7 @@ class BannedController extends Controller
 {
     public function __invoke()
     {
-        $users = User::permission('banned')->get();
+        $users = User::permission('banned')->paginate(6);
         return view('admin.user.banned', compact('users'));
     }
 }

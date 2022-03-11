@@ -67,6 +67,11 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="mx-auto">
+                            {{ $comments->links() }}
+                        </div>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
