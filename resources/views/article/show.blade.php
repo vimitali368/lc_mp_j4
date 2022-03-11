@@ -8,9 +8,11 @@
                 {{ $date->translatedFormat('F') }} {{ $date->day }}, {{ $date->year }} • {{ $date->format('H:i') }} •
                 {{ $article->comments->count() }} Комментария
             </p>
-            <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
-                <img src="{{ $article->preview_image }}" alt="featured image" class="w-100">
-            </section>
+            @if( $article->preview_image != '' )
+                <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ $article->preview_image }}" alt="featured image" class="w-100">
+                </section>
+            @endif
             <section class="post-content">
                 <div class="row">
                     <div class="col-lg-9 mx-auto" data-aos="fade-up">
@@ -63,24 +65,24 @@
                                             @enderror
                                         </div>
                                     </div>
-{{--                                    <div class="row">--}}
-                                        <div class="form-group">
-                                            <div class="captcha">
+                                    {{--                                    <div class="row">--}}
+                                    <div class="form-group">
+                                        <div class="captcha">
                                             <label class="col-md-6 col-form-label text-md-end">Защита от спама</label>
-                                                <span class="md-3">{!! captcha_img() !!}</span>
-                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
-                                                    &#x21bb;
-                                                </button>
-                                            </div>
-                                            <input id="captcha" type="text" class="form-control"
-                                                   placeholder="Введите ответ" name="captcha">
-                                            @error('captcha')
-                                            <div class=" text-danger">{{ $message }}</div>
-                                            @enderror
-                                            <div class="col-md-4">
-                                            </div>
+                                            <span class="md-3">{!! captcha_img() !!}</span>
+                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                &#x21bb;
+                                            </button>
                                         </div>
-{{--                                    </div>--}}
+                                        <input id="captcha" type="text" class="form-control"
+                                               placeholder="Введите ответ" name="captcha">
+                                        @error('captcha')
+                                        <div class=" text-danger">{{ $message }}</div>
+                                        @enderror
+                                        <div class="col-md-4">
+                                        </div>
+                                    </div>
+                                    {{--                                    </div>--}}
                                     <div class="form-group">
                                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     </div>
