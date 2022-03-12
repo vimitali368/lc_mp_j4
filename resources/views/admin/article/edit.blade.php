@@ -54,15 +54,7 @@
                         <label>Изображение для статьи</label>
                         @if(isset($article->preview_image))
                             <div class="w-25">
-                                <img src="{{ url( '/storage/'. $article->preview_image )  }}" alt="preview_image"
-                                     class="w-50">
-                            </div>
-                            <div class="w-25">
-                                <img src="{{ url( $article->preview_image ) }}" alt="preview_image"
-                                     class="w-50">
-                            </div>
-                            <div class="w-25">
-                                <img src="{{ url( 'storage/' . $article->preview_image ) }}" alt="preview_image"
+                                <img src="{{ $article->preview_image }}" alt="preview_image"
                                      class="w-50">
                             </div>
                         @endif
