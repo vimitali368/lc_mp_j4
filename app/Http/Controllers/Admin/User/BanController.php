@@ -12,13 +12,17 @@ class BanController extends Controller
         if ($user->hasPermissionTo('add comments')) {
             $user->revokePermissionTo(['add comments']);
             $user->givePermissionTo(['banned']);
+            $status = 'забанен';
         } else {
             if ($user->hasPermissionTo('banned')) {
                 $user->revokePermissionTo(['banned']);
                 $user->givePermissionTo(['add comments']);
+                $status = 'разбанен';
             }
         }
-        return redirect()->back();
+        $status = 'Пользователь ' . $user->name . ' ' . $status;
+        
+        return redirect()->back()->with('status' , $status);
     }
 
 }

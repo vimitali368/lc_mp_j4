@@ -20,8 +20,12 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        <!-- Main content -->
+        @if(session('status'))
+            <div class="alert alert-success col-3 ml-4" role="alert">
+                {{  session('status') }}
+            </div>
+        @endif
+    <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="col-12">
@@ -62,13 +66,13 @@
                                             <td class="text-center">
                                                 <a href="{{ route('admin.user.ban', $comment->user_id) }}"
                                                    @if($comment->user->isBanned())
-                                                   title="Забанить"
-                                                   class="text-success">
-                                                    <i class="fas fa-comment"></i>
+                                                   title="Разбанить"
+                                                   class="text-danger">
+                                                    <i class="fas fa-comment-slash"></i>
                                                     @else
-                                                        title="Разбанить"
-                                                        class="text-danger">
-                                                        <i class="fas fa-comment-slash"></i>
+                                                        title="Забанить"
+                                                        class="text-success">
+                                                        <i class="fas fa-comment"></i>
                                                     @endif
                                                 </a>
                                             </td>
