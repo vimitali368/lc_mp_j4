@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/css/*
+/public/js/*
 /storage/*.key
 /vendor
 .env
@@ -14,3 +16,5 @@ yarn-error.log
 /.idea
 /.vscode
 .--} pack_directory.bat
+/public/css/
+/public/js/
