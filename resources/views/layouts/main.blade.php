@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('admin') }}">Платформа</a>
+                        <a class="nav-link" href="{{ route('admin') }}">Платформа "Воко"</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('article.index') }}">Статьи</a>
@@ -72,7 +72,7 @@
 <footer class="edica-footer" data-aos="fade-up">
     <div class="container">
         <div class="row footer-widget-area">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a href="{{ asset('/') }}" class="footer-brand-wrapper">
                     BOKO
                 </a>
@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="footer-bottom-content">
-            <p class="mb-0">© Воко. 2022. All rights reserved.</p>
+            <p class="mb-0">© Воко. 2022. Все права защищены.</p>
         </div>
     </div>
 </footer>
