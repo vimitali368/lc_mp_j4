@@ -35,7 +35,7 @@ class CreateAdministratorUserSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        $permissions = Permission::pluck('id', 'id')->all();
+        $permissions = Permission::where('name','!=', 'banned')->pluck('id', 'id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
     }

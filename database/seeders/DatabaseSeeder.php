@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        Tag::factory(20)->create();
-        Category::factory(30)->create();
+        Tag::factory(10)->create();
+        Category::factory(20)->create();
 
         $this->call([
             RolesSeeder::class,
