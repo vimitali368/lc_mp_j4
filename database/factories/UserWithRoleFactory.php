@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
-class UserFactory extends Factory
+class UserWithRoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +17,15 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        return [
+        $user = [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('123123123'), // 123123123
             'remember_token' => Str::random(10),
         ];
+
+        return $user;
     }
 
     /**

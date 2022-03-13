@@ -39,6 +39,7 @@
                                     <th>ID</th>
                                     <th>Пользователь</th>
                                     <th>E-mail</th>
+                                    <th>Роль</th>
 {{--                                    <th colspan="3" class="text-center">Действия</th>--}}
                                 </tr>
                                 </thead>
@@ -48,6 +49,11 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>
+                                            @foreach($user->roles as $role)
+                                                {{ $role->name }}
+                                            @endforeach
+                                        </td>
 {{--                                        <td class="text-center">--}}
 {{--                                            <a href="{{ route('admin.user.show', $user->id) }}"><i--}}
 {{--                                                    class="far fa-eye"></i></a></td>--}}

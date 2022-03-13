@@ -39,7 +39,8 @@
                                     <th>ID</th>
                                     <th>Пользователь</th>
                                     <th>E-mail</th>
-{{--                                    <th colspan="3" class="text-center">Действия</th>--}}
+                                    <th>Роль</th>
+                                    {{--                                    <th colspan="3" class="text-center">Действия</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -48,22 +49,27 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-{{--                                        <td class="text-center">--}}
-{{--                                            <a href="{{ route('admin.user.show', $user->id) }}"><i--}}
-{{--                                                    class="far fa-eye"></i></a></td>--}}
-{{--                                        <td class="text-center">--}}
-{{--                                            <a href="{{ route('admin.user.edit', $user->id) }}"--}}
-{{--                                               class="text-success"><i class="fas fa-pencil-alt"></i></a></td>--}}
-{{--                                        <td>--}}
-{{--                                            <form action="{{ route('admin.user.delete', $user->id) }}"--}}
-{{--                                                  method="POST">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-{{--                                                <button type="submit" class="border-0 bg-transparent">--}}
-{{--                                                    <i class="fas fa-trash text-danger" role="button"></i>--}}
-{{--                                                </button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
+                                        <td>
+                                            @foreach($user->roles as $role)
+                                                {{ $role->name }}
+                                            @endforeach
+                                        </td>
+                                        {{--                                        <td class="text-center">--}}
+                                        {{--                                            <a href="{{ route('admin.user.show', $user->id) }}"><i--}}
+                                        {{--                                                    class="far fa-eye"></i></a></td>--}}
+                                        {{--                                        <td class="text-center">--}}
+                                        {{--                                            <a href="{{ route('admin.user.edit', $user->id) }}"--}}
+                                        {{--                                               class="text-success"><i class="fas fa-pencil-alt"></i></a></td>--}}
+                                        {{--                                        <td>--}}
+                                        {{--                                            <form action="{{ route('admin.user.delete', $user->id) }}"--}}
+                                        {{--                                                  method="POST">--}}
+                                        {{--                                                @csrf--}}
+                                        {{--                                                @method('DELETE')--}}
+                                        {{--                                                <button type="submit" class="border-0 bg-transparent">--}}
+                                        {{--                                                    <i class="fas fa-trash text-danger" role="button"></i>--}}
+                                        {{--                                                </button>--}}
+                                        {{--                                            </form>--}}
+                                        {{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>

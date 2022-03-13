@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Tag;
+use Database\Factories\UserWithRoleFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,12 +29,12 @@ class DatabaseSeeder extends Seeder
             CreateEditorUserSeeder::class,
             CreateAuthorUserSeeder::class,
             CreateModeratorUserSeeder::class,
-            CreateReaderUserSeeder::class,
+            CreateNotAdminUsersSeeder::class,
             CreateBannedUserSeeder::class,
+            CreateNotAdminUsersSeeder::class,
         ]);
 
         Article::factory(40)->create();
         Comment::factory(400)->create();
-
     }
 }

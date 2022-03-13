@@ -52,7 +52,7 @@
                                         <td class="text-center">
                                             <a href="{{ route('admin.category.edit', $category->id) }}"
                                                class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('admin.category.delete', $category->id) }}"
                                                   method="POST">
                                                 @csrf

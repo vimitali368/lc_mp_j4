@@ -52,7 +52,7 @@
                                         <td class="text-center">
                                             <a href="{{ route('admin.tag.edit', $tag->id) }}"
                                                class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('admin.tag.delete', $tag->id) }}"
                                                   method="POST">
                                                 @csrf
