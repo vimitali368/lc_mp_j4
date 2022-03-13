@@ -30,7 +30,7 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th >ID</th>
+                                    <th>ID</th>
                                     <th colspan="3" class="text-center">Действия</th>
                                     <th>Сообщение</th>
                                     <th>ID пользователя</th>
@@ -47,7 +47,7 @@
                                                     class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                                         @endif
                                         @if(auth()->user()->can('delete comments'))
-                                            <td>
+                                            <td class="text-center">
                                                 <form action="{{ route('admin.comment.delete', $comment->id) }}"
                                                       method="POST">
                                                     @csrf
@@ -59,11 +59,17 @@
                                             </td>
                                         @endif
                                         @if(auth()->user()->can('ban commentators'))
-{{--                                                    class="{{ $comment->user()->can('banned') ? 'text-success' : 'text-danger' }}">--}}
-                                            <td class="text-center"><a
-                                                    href="{{ route('admin.user.ban', $comment->user_id) }}"
-                                                    class="text-danger">
-                                                    <i class="fas fa-comment-slash"></i>
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.user.ban', $comment->user_id) }}"
+                                                   @if($comment->user->isBanned())
+                                                   title="Забанить"
+                                                   class="text-success">
+                                                    <i class="fas fa-comment"></i>
+                                                    @else
+                                                        title="Разбанить"
+                                                        class="text-danger">
+                                                        <i class="fas fa-comment-slash"></i>
+                                                    @endif
                                                 </a>
                                             </td>
                                         @endif
