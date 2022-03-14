@@ -29,6 +29,28 @@
             </section>
             <div class="row">
                 <div class="col-lg-9 mx-auto">
+                    <section class="py-3">
+                        @auth()
+{{--                            @dd($article->id)--}}
+                            <form action="{{ route('article.like.store', $article->id) }}" method="POST">
+                                @csrf
+                                <span>{{ $article->liked_users_count }}</span>
+                                <button type="submit" class="border-0 bg-transparent">
+                                    @if(auth()->user()->likedArticles->contains($article->id))
+                                        <i class="fas fa-heart"></i>
+                                    @else
+                                        <i class="far fa-heart"></i>
+                                    @endif
+                                </button>
+                            </form>
+                        @endauth
+                        @guest()
+                            <div>
+                                <span>{{ $article->liked_users_count }}</span>
+                                <i class="far fa-heart"></i>
+                            </div>
+                        @endguest
+                    </section>
                     <section class="comment-list mb-5">
                         <h2 class="section-title mb-5" data-aos="fade-up">
                             Комментарии ( {{ $article->comments->count() }} )

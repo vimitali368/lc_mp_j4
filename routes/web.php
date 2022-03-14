@@ -26,11 +26,16 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
 
     Route::group(['prefix' => '{article}'], function () {
         Route::get('/', 'ShowController')->name('article.show');
+
+        Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+            Route::post('/', 'StoreController')->name('article.comment.store')->middleware('can:add comments');
+        });
+
+        Route::group(['namespace' => 'Like', 'prefix' => 'likes'], function () {
+            Route::post('/', 'StoreController')->name('article.like.store');
+        });
     });
 
-    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
-        Route::post('/', 'StoreController')->name('article.comment.store')->middleware('can:add comments');
-    });
 });
 
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {

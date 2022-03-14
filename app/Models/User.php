@@ -57,4 +57,9 @@ class User extends Authenticatable
         return $this->can('banned');
     }
 
+    public function likedArticles()
+    {
+        return $this->belongsToMany(Article::class, 'article_user_likes', 'user_id', 'article_id');
+    }
+
 }

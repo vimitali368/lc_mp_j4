@@ -19,6 +19,27 @@
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
                             </div>
+                            @auth()
+                                <div>
+                                    <form action="{{ route('article.like.store', $article->id) }}" method="POST">
+                                        @csrf
+                                        <span>{{ $article->liked_users_count }}</span>
+                                        <button type="submit" class="border-0 bg-transparent">
+                                            @if(auth()->user()->likedArticles->contains($article->id))
+                                                <i class="fas fa-heart"></i>
+                                            @else
+                                                <i class="far fa-heart"></i>
+                                            @endif
+                                        </button>
+                                    </form>
+                                </div>
+                            @endauth
+                            @guest()
+                                <div>
+                                    <span>{{ $article->liked_users_count }}</span>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            @endguest
                         @endforeach
                     </div>
                     <div class="row">
