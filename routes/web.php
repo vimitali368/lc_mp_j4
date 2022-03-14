@@ -33,6 +33,16 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     });
 });
 
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {
+    Route::get('/', 'IndexController')->name('personal.main.index');
+
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+        Route::get('/{user}', 'ShowController')->name('personal.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
+    });
+});
+
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin');

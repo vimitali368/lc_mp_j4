@@ -45,6 +45,9 @@
                     {{--                    <li class="nav-item ">--}}
                     {{--                        <a class="nav-link" href="{{ route('category.index') }}">Категории</a>--}}
                     {{--                    </li>--}}
+                    @auth()
+                        <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                    @endauth
                     @guest()
                         <li class="nav-item ">
                             <a class="nav-link" href="/login">Войти</a>
