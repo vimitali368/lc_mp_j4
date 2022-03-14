@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">Категория {{ $user->title }}</h1>
+                        <h1 class="m-0 mr-2">{{ $user->name }}</h1>
                         <a href="{{ route('personal.user.edit', $user->id) }}" class="text-success">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
@@ -25,8 +25,12 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        <!-- Main content -->
+        @if(session('status'))
+            <div class="alert alert-success col-6 ml-4" role="alert">
+                {{  session('status') }}
+            </div>
+        @endif
+    <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="col-6">

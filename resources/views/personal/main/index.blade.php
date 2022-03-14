@@ -8,11 +8,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Главная</h1>
+                        <h1 class="m-0">Личный кабинет</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active">Главная</li>
+                            <li class="breadcrumb-item active">Личный кабинет</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

@@ -40,6 +40,8 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::get('/{user}', 'ShowController')->name('personal.user.show');
         Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
         Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
+        Route::get('/{user}/change-password', 'ChangePasswordController')->name('personal.user.change-password');
+        Route::patch('/{user}/update-password', 'UpdatePasswordController')->name('personal.user.update-password');
     });
 });
 
