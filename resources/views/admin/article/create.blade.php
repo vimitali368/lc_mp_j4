@@ -66,6 +66,20 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Тэги</label>
+                        <select class="select2" multiple="multiple" data-placeholder="Выберите тэги"
+                                style="width: 100%;" name="tag_ids[]">
+                            @foreach($tags as $tag)
+                                <option
+                                    {{ is_array( old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : ''}}
+                                    value="{{ $tag->id }}">{{ $tag->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('tag_ids')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     </div>
                     <div class="form-group">

@@ -35,8 +35,8 @@ class ArticleService
     {
         try {
             Db::beginTransaction();
-//            $tagIds = $data['tag_ids'];
-//            unset($data['tag_ids']);
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
 //        dd($tagIds);
             if (isset($data['preview_image'])) {
                 $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
@@ -47,7 +47,8 @@ class ArticleService
 //                dd($data['content']);
             }
             $article = Article::firstOrCreate($data);
-//            $article->tags()->attach($tagIds);
+//            dd($article);
+            $article->tags()->attach($tagIds);
             Db::commit();
         } catch (\Exception $exception) {
             Db::rollBack();
@@ -58,13 +59,14 @@ class ArticleService
     public function update($data, $article)
     {
         try {
+//            dd($data);
             Db::beginTransaction();
-//            if (isset($data['tag_ids'])) {
-//                $tagIds = $data['tag_ids'];
-//                unset($data['tag_ids']);
-//            } else {
-//                $tagIds = [];
-//            }
+            if (isset($data['tag_ids'])) {
+                $tagIds = $data['tag_ids'];
+                unset($data['tag_ids']);
+            } else {
+                $tagIds = [];
+            }
 //            dd($tagIds);
             if (isset($data['preview_image'])) {
 //                dd($data['preview_image'] );
@@ -73,7 +75,7 @@ class ArticleService
             }
 //            dd($data);
             $article->update($data);
-//            $article->tags()->sync($tagIds);
+            $article->tags()->sync($tagIds);
 //            dd($article);
             Db::commit();
             return $article;

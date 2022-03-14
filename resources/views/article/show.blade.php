@@ -31,7 +31,7 @@
                 <div class="col-lg-9 mx-auto">
                     <section class="py-3">
                         @auth()
-{{--                            @dd($article->id)--}}
+                            {{--                            @dd($article->id)--}}
                             <form action="{{ route('article.like.store', $article->id) }}" method="POST">
                                 @csrf
                                 <span>{{ $article->liked_users_count }}</span>
@@ -51,6 +51,24 @@
                             </div>
                         @endguest
                     </section>
+                    @if($relatedPosts->count() > 0)
+                        <section class="related-posts">
+                            <h2 class="section-title mb-4" data-aos="fade-up">Схожие статьи</h2>
+                            <div class="row">
+                                @foreach($relatedPosts as $relatedPost)
+                                    <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                                        <a href="{{ route('article.show', $relatedPost->id) }}">
+                                            <img src="{{ $relatedPost->preview_image }}"
+                                                 alt="related post"
+                                                 class="post-thumbnail">
+                                            {{--                                        <p class="post-category">{{ $relatedPost->category->title }}</p>--}}
+                                            <h5 class="article-title">{{ $relatedPost->title }}</h5>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </section>
+                    @endif
                     <section class="comment-list mb-5">
                         <h2 class="section-title mb-5" data-aos="fade-up">
                             Комментарии ( {{ $article->comments->count() }} )
