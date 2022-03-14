@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterCaptchaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,23 @@ Route::group(['namespace' => 'Main'], function () {
 
 Auth::routes();
 
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {
+    Route::get('/', 'IndexController')->name('personal.main.index');
+
+    Route::group(['namespace' => 'Like', 'prefix' => 'likes'], function () {
+        Route::get('/', 'IndexController')->name('personal.like.index');
+        Route::delete('/{article}', 'DeleteController')->name('personal.like.delete');
+    });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+        Route::get('/{user}', 'ShowController')->name('personal.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
+        Route::get('/{user}/change-password', 'ChangePasswordController')->name('personal.user.change-password');
+        Route::patch('/{user}/update-password', 'UpdatePasswordController')->name('personal.user.update-password');
+    });
+});
+
 Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     Route::get('/', 'IndexController')->name('article.index');
     Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\CaptchaController::class, 'reloadCaptcha']);
@@ -35,20 +53,8 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
             Route::post('/', 'StoreController')->name('article.like.store');
         });
     });
-
 });
 
-Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {
-    Route::get('/', 'IndexController')->name('personal.main.index');
-
-    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
-        Route::get('/{user}', 'ShowController')->name('personal.user.show');
-        Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
-        Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
-        Route::get('/{user}/change-password', 'ChangePasswordController')->name('personal.user.change-password');
-        Route::patch('/{user}/update-password', 'UpdatePasswordController')->name('personal.user.update-password');
-    });
-});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -102,7 +108,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::get('/{user}/ban', 'BanController')->name('admin.user.ban')->middleware('can:ban commentators');
         Route::get('/banned', 'BannedController')->name('admin.user.banned');
     });
-
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);
+

@@ -20,7 +20,7 @@
             font-family: Lucida Sans Unicode
         }
     </style>
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/loader.js') }}"></script>
 </head>
@@ -37,16 +37,18 @@
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('admin') }}">Платформа "Воко"</a>
-                    </li>
-                    <li class="nav-item ">
                         <a class="nav-link" href="{{ route('article.index') }}">Статьи</a>
                     </li>
                     {{--                    <li class="nav-item ">--}}
                     {{--                        <a class="nav-link" href="{{ route('category.index') }}">Категории</a>--}}
                     {{--                    </li>--}}
                     @auth()
-                        <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('admin') }}">Платформа "Воко"</a>
+                        </li>
                     @endauth
                     @guest()
                         <li class="nav-item ">
