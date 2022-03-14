@@ -49,6 +49,27 @@
                     </div>
                 </section>
             @endif
+            @if($likedArticles->count() > 0)
+                <div class="col-md-4 sidebar" data-aos="fade-left">
+                    <div class="widget widget-post-list">
+                        <h5 class="widget-title">фаворитные статьи</h5>
+                        <ul class="post-list">
+                            @foreach($likedArticles as $article)
+                                <li class="post">
+                                    <a href="{{ route('article.show', $article->id) }}" class="post-permalink media">
+                                        @if( $article->preview_image != '' )
+                                            <img src="{{ $article->preview_image }}" alt="blog post">
+                                        @endif
+                                        <div class="media-body">
+                                            <h6 class="post-title">{{ $article->title }}</h6>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
     </main>
 @endsection

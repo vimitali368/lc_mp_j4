@@ -11,7 +11,8 @@ class IndexController extends Controller
     {
         $articles = Article::paginate(6);
 //        $randomArticles = Article::get()->random(4);
-        return view('article.index', compact('articles'));
+        $likedArticles = Article::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(5);
+        return view('article.index', compact('articles', 'likedArticles'));
     }
 
 }
