@@ -9,10 +9,9 @@ class IndexController extends Controller
     public function __invoke()
     {
         $data = [];
-        $data['commentsCount'] = 2;
-//        Comment::all()->count();
-        $data['likesCount'] = 3;
-//        Like::all()->count();
+//        $data['commentsCount'] = auth()-user()->withCount['commentsCount'];
+//        dd($data['commentsCount']);
+//        $data['articlesCount'] = auth()-user()->withCount['articlesCount'];
         return view('personal.main.index', compact('data'));
     }
 

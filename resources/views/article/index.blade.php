@@ -58,7 +58,7 @@
             @if($likedArticles->count() > 0)
                 <div class="col-md-4 sidebar" data-aos="fade-left">
                     <div class="widget widget-post-list">
-                        <h5 class="widget-title">фаворитные статьи</h5>
+                        <h5 class="widget-title">Фаворитные статьи</h5>
                         <ul class="post-list">
                             @foreach($likedArticles as $article)
                                 <li class="post">
