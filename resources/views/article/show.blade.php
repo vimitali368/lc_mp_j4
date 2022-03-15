@@ -61,7 +61,7 @@
                                             <img src="{{ $relatedPost->preview_image }}"
                                                  alt="related post"
                                                  class="post-thumbnail">
-                                            {{--                                        <p class="post-category">{{ $relatedPost->category->title }}</p>--}}
+                                            <p class="post-category">{{ $relatedPost->category->title }}</p>
                                             <h5 class="article-title">{{ $relatedPost->title }}</h5>
                                         </a>
                                     </div>

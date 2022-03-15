@@ -62,4 +62,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Article::class, 'article_user_likes', 'user_id', 'article_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }

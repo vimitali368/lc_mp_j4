@@ -66,6 +66,19 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Выберите категорию</label>
+                        <select class="form-control" name="category_id">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ $category->id == old('category_id') ? ' selected' : '' }}
+                                >{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                        <div class=" text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label>Тэги</label>
                         <select class="select2" multiple="multiple" data-placeholder="Выберите тэги"
                                 style="width: 100%;" name="tag_ids[]">

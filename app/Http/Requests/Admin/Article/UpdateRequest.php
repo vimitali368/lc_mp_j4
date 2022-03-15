@@ -28,6 +28,8 @@ class UpdateRequest extends FormRequest
             'description' => 'nullable|string',
             'content' => 'nullable|string',
             'preview_image' => 'nullable|file',
+            'user_id' => 'nullable|numeric',
+            'category_id' => 'nullable|integer|exists:categories,id',
             'tag_ids' => 'nullable|array',
             'tag_ids.*' => 'nullable|integer|exists:tags,id'
         ];
@@ -41,6 +43,9 @@ class UpdateRequest extends FormRequest
             'description.string' => 'Данные должны соответствовать строчному типу',
             'content.string' => 'Данные должны соответствовать строчному типу',
             'preview_image.file' => 'Необходимо выбрать файл',
+            'user_id.numeric' => 'Данные должны соответствовать числовому типу',
+            'category_id.integer' => 'ID категории должен быть числом',
+            'category_id.exists' => 'ID категории должен быть в базе данных',
             'tag_ids.array' => 'Необходимо отправить массив данных'
         ];
     }

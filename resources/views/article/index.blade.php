@@ -15,7 +15,7 @@
                                             <img src="{{ $article->preview_image }}" alt="blog post">
                                         </div>
                                     @endif
-                                    {{--                            <p class="blog-post-category">{{ $article->category->title }}</p>--}}
+                                    <p class="blog-post-category">{{ $article->category->title }}</p>
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
                             </div>
