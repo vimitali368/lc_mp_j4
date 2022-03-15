@@ -42,6 +42,10 @@
                                     <i class="far fa-heart"></i>
                                 </div>
                             @endguest
+                            <div>
+                                <span>{{ $article->view_count }}</span>
+                                <i class="far fa-eye"></i>
+                            </div>
                         @endforeach
                     </div>
                     <div class="row">

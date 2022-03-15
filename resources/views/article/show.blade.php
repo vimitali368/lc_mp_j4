@@ -50,6 +50,10 @@
                                 <i class="far fa-heart"></i>
                             </div>
                         @endguest
+                        <div>
+                            <span>{{ $article->view_count }}</span>
+                            <i class="far fa-eye"></i>
+                        </div>
                     </section>
                     @if($relatedPosts->count() > 0)
                         <section class="related-posts">

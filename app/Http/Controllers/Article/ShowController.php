@@ -21,6 +21,8 @@ class ShowController extends Controller
             ->take(3);
 //        dd($relatedPosts);
 
+        event('articleHasViewed', $article);
+
         return view('article.show', compact('article', 'date', 'relatedPosts'));
     }
 
