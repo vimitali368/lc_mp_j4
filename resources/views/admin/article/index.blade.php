@@ -40,8 +40,30 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Заголовок</th>
-                                    <th>Описание</th>
-                                    <th colspan="3" class="text-center">Действия</th>
+                                    <th class="text-center">
+                                        @if(auth()->user()->can('edit articles'))
+                                            @sortablelink('view_count', 'Просмотры')
+                                        @else
+                                            Просмотры
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(auth()->user()->can('edit articles'))
+                                            @sortablelink('liked_users_count', 'Фавориты')
+                                        @else
+                                            Фавориты
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(auth()->user()->can('edit articles'))
+                                            @sortablelink('comments_count', 'Комментарии')
+                                        @else
+                                            Комментарии
+                                        @endif
+                                    </th>
+                                    @if(auth()->user()->hasAnyPermission(['show articles', 'edit articles', 'delete articles']))
+                                        <th colspan="3" class="text-center">Действия</th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +71,9 @@
                                     <tr>
                                         <td>{{ $article->id }}</td>
                                         <td>{{ $article->title }}</td>
-                                        <td>{{ $article->description }}</td>
+                                        <td class="text-center">{{ $article->view_count }}</td>
+                                        <td class="text-center">{{ $article->liked_users_count }}</td>
+                                        <td class="text-center">{{ $article->comments_count }}</td>
                                         @if(auth()->user()->can('show articles'))
                                             <td class="text-center">
                                                 <a href="{{ route('admin.article.show', $article->id) }}"><i
@@ -80,7 +104,8 @@
                     </div>
                     <div class="row">
                         <div class="mx-auto">
-                            {{ $articles->links() }}
+                            {{--                            {{ $articles->links() }}--}}
+                            {{ $articles->appends(\Request::except('page'))->render() }}
                         </div>
                     </div>
                 </div>

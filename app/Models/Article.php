@@ -5,15 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 class Article extends Model
 {
     use HasFactory, SoftDeletes;
+    use Sortable;
 
     protected $table = 'articles';
     protected $guarded = false;
 
-    protected $withCount = ['likedUsers'];
+    protected $withCount = ['likedUsers', 'comments'];
+
+    public $sortable = ['view_count', 'liked_users_count', 'comments_count'];
+    protected $sortableAs = ['view_count', 'liked_users_count', 'comments_count'];
 
     public function comments()
     {
