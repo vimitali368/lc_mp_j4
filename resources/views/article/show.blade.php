@@ -58,10 +58,14 @@
                                 @foreach($relatedPosts as $relatedPost)
                                     <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
                                         <a href="{{ route('article.show', $relatedPost->id) }}">
-                                            <img src="{{ $relatedPost->preview_image }}"
-                                                 alt="related post"
-                                                 class="post-thumbnail">
-                                            <p class="post-category">{{ $relatedPost->category->title }}</p>
+                                            @if( $relatedPost->preview_image != '' )
+                                                <img src="{{ $relatedPost->preview_image }}"
+                                                     alt="related post"
+                                                     class="post-thumbnail">
+                                            @endif
+                                            @if(isset($article->category))
+                                                <p class="post-category">{{ $relatedPost->category->title }}</p>
+                                            @endif
                                             <h5 class="article-title">{{ $relatedPost->title }}</h5>
                                         </a>
                                     </div>

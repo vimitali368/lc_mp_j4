@@ -15,7 +15,9 @@
                                             <img src="{{ $article->preview_image }}" alt="blog post">
                                         </div>
                                     @endif
-                                    <p class="blog-post-category">{{ $article->category->title }}</p>
+                                    @if(isset($article->category))
+                                        <p class="blog-post-category">{{ $article->category->title }}</p>
+                                    @endif
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
                             </div>
