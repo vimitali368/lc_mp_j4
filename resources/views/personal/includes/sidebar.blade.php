@@ -41,6 +41,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('personal.subscriber.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bell"></i>
+                        <p>
+                            Подписчики
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('personal.like.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-heart"></i>
                         <p>
