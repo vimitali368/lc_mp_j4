@@ -55,6 +55,12 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
 
     Route::group(['namespace' => 'Reader', 'prefix' => 'readers'], function () {
         Route::get('/', 'IndexController')->name('article.reader.index');
+
+        Route::group(['namespace' => 'Author', 'prefix' => 'authors'], function () {
+            Route::group(['prefix' => '{author}'], function () {
+                Route::get('/', 'ShowController')->name('article.reader.author.show');
+            });
+        });
     });
 
     Route::group(['prefix' => '{article}'], function () {
