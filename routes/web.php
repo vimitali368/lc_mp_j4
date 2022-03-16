@@ -39,6 +39,11 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::delete('/{article}', 'DeleteController')->name('personal.like.delete');
     });
 
+    Route::group(['namespace' => 'Subscription', 'prefix' => 'subscriptions'], function () {
+        Route::get('/', 'IndexController')->name('personal.subscription.index');
+        Route::delete('/{author}', 'DeleteController')->name('personal.subscription.delete');
+    });
+
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
         Route::get('/{user}', 'ShowController')->name('personal.user.show');
         Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
@@ -59,7 +64,12 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
         Route::group(['namespace' => 'Author', 'prefix' => 'authors'], function () {
             Route::group(['prefix' => '{author}'], function () {
                 Route::get('/', 'ShowController')->name('article.reader.author.show');
+
+                Route::group(['namespace' => 'Subscription', 'prefix' => 'subscriptions'], function () {
+                    Route::post('/', 'StoreController')->name('article.reader.author.subscription.store');
+                });
             });
+
         });
     });
 

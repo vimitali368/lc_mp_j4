@@ -49,6 +49,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('personal.subscription.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-flag"></i>
+                        <p>
+                            Статьи любимых авторов
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-clipboard"></i>
                         <p>

@@ -66,6 +66,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Article::class, 'article_user_likes', 'user_id', 'article_id');
     }
 
+    public function subscribedAuthors()
+    {
+        return $this->belongsToMany(User::class, 'reader_author_subscriptions', 'reader_id', 'author_id');
+    }
+
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class, 'reader_author_subscriptions', 'author_id', 'reader_id');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
