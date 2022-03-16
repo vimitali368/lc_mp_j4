@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -11,7 +11,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('personal') }}">Личный кабинет</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a></li>
                             <li class="breadcrumb-item active">Статьи / Список</li>
                         </ol>
                     </div><!-- /.col -->
@@ -41,25 +41,25 @@
                                     <th>ID</th>
                                     <th>Заголовок</th>
                                     <th class="text-center">
-                                        @if(auth()->user()->can('edit articles'))
-                                            @sortablelink('view_count', 'Просмотры')
-                                        @else
+{{--                                        @if(auth()->user()->can('edit articles'))--}}
+{{--                                            @sortablelink('view_count', 'Просмотры')--}}
+{{--                                        @else--}}
                                             Просмотры
-                                        @endif
+{{--                                        @endif--}}
                                     </th>
                                     <th class="text-center">
-                                        @if(auth()->user()->can('edit articles'))
-                                            @sortablelink('liked_users_count', 'Фавориты')
-                                        @else
+{{--                                        @if(auth()->user()->can('edit articles'))--}}
+{{--                                            @sortablelink('liked_users_count', 'Фавориты')--}}
+{{--                                        @else--}}
                                             Фавориты
-                                        @endif
+{{--                                        @endif--}}
                                     </th>
                                     <th class="text-center">
-                                        @if(auth()->user()->can('edit articles'))
-                                            @sortablelink('comments_count', 'Комментарии')
-                                        @else
+{{--                                        @if(auth()->user()->can('edit articles'))--}}
+{{--                                            @sortablelink('comments_count', 'Комментарии')--}}
+{{--                                        @else--}}
                                             Комментарии
-                                        @endif
+{{--                                        @endif--}}
                                     </th>
                                     @if(auth()->user()->hasAnyPermission(['show articles', 'edit articles', 'delete articles']))
                                         <th colspan="3" class="text-center">Действия</th>

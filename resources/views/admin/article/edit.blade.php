@@ -99,6 +99,12 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="is_personal" value="{{ $article->is_personal }}">
+                        @error('is_personal')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Обновить">
                     </div>
                 </form>

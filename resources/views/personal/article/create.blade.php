@@ -11,7 +11,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                            </li>
                             <li class="breadcrumb-item"><a href="{{ route('personal.article.index') }}">Статьи</a></li>
                             <li class="breadcrumb-item active">Добавление</li>
                         </ol>
@@ -94,6 +95,12 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="is_personal" value="1">
+                        @error('is_personal')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Добавить">

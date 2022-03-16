@@ -24,6 +24,16 @@ Auth::routes();
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {
     Route::get('/', 'IndexController')->name('personal.main.index');
 
+    Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+        Route::get('/', 'IndexController')->name('personal.article.index');
+        Route::get('/create', 'CreateController')->name('personal.article.create');
+        Route::post('/', 'StoreController')->name('personal.article.store');
+        Route::get('/{article}', 'ShowController')->name('personal.article.show');
+        Route::get('/{article}/edit', 'EditController')->name('personal.article.edit');
+        Route::patch('/{article}', 'UpdateController')->name('personal.article.update');
+        Route::delete('/{article}', 'DeleteController')->name('personal.article.delete');
+    });
+
     Route::group(['namespace' => 'Like', 'prefix' => 'likes'], function () {
         Route::get('/', 'IndexController')->name('personal.like.index');
         Route::delete('/{article}', 'DeleteController')->name('personal.like.delete');
@@ -37,15 +47,6 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::patch('/{user}/update-password', 'UpdatePasswordController')->name('personal.user.update-password');
     });
 
-    Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
-        Route::get('/', 'IndexController')->name('personal.article.index');
-        Route::get('/create', 'CreateController')->name('personal.article.create');
-        Route::post('/', 'StoreController')->name('personal.article.store');
-        Route::get('/{article}', 'ShowController')->name('personal.article.show');
-        Route::get('/{article}/edit', 'EditController')->name('personal.article.edit');
-        Route::patch('/{article}', 'UpdateController')->name('personal.article.update');
-        Route::delete('/{article}', 'DeleteController')->name('personal.article.delete');
-    });
 });
 
 Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {

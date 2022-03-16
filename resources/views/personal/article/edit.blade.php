@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -11,8 +11,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Личный кабинет</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.article.index') }}">Статьи</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.article.index') }}">Статьи</a></li>
                             <li class="breadcrumb-item active">Редактирование</li>
                         </ol>
                     </div><!-- /.col -->
@@ -24,7 +25,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('admin.article.update', $article->id ) }}" method="POST"
+                <form action="{{ route('personal.article.update', $article->id ) }}" method="POST"
                       enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -95,6 +96,12 @@
                             @endforeach
                         </select>
                         @error('tag_ids')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="is_personal" value="{{ $article->is_personal }}">
+                        @error('is_personal')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

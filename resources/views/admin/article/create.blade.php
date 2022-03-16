@@ -96,6 +96,12 @@
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="is_personal" value="0">
+                        @error('is_personal')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Добавить">
                     </div>
                 </form>

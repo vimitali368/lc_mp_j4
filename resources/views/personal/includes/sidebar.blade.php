@@ -58,17 +58,17 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
+                            <a href="{{ route('personal.article.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>Список</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('personal.article.create') }}" class="nav-link">
                                 <i class="nav-icon fas fa-pen"></i>
                                 <p>
                                     Добавить
                                 </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-glasses"></i>
-                                <p>Читатели</p>
                             </a>
                         </li>
                     </ul>

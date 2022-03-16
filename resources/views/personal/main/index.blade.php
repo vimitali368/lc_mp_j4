@@ -33,7 +33,7 @@
                                 <p>Свои статьи</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-glasses"></i>
+                                <i class="fas fa-clipboard"></i>
                             </div>
                             {{--                            <a href="{{ route('admin.user.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>

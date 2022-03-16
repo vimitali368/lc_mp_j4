@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -9,12 +9,12 @@
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="m-0 mr-2">{{ $article->title }}</h1>
                         @if(auth()->user()->can('edit articles'))
-                        <a href="{{ route('admin.article.edit', $article->id) }}" class="text-success">
+                        <a href="{{ route('personal.article.edit', $article->id) }}" class="text-success">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @endif
                         @if(auth()->user()->can('delete articles'))
-                            <form action="{{ route('admin.article.delete', $article->id) }}"
+                            <form action="{{ route('personal.article.delete', $article->id) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -26,8 +26,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Админка</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.article.index') }}">Статьи</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Админка</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.article.index') }}">Статьи</a></li>
                             <li class="breadcrumb-item active">Карточка</li>
                         </ol>
                     </div><!-- /.col -->
