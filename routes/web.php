@@ -53,6 +53,10 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     Route::get('/', 'IndexController')->name('article.index');
     Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\CaptchaController::class, 'reloadCaptcha']);
 
+    Route::group(['namespace' => 'Reader', 'prefix' => 'readers'], function () {
+        Route::get('/', 'IndexController')->name('article.reader.index');
+    });
+
     Route::group(['prefix' => '{article}'], function () {
         Route::get('/', 'ShowController')->name('article.show');
 
@@ -64,6 +68,7 @@ Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
             Route::post('/', 'StoreController')->name('article.like.store');
         });
     });
+
 });
 
 

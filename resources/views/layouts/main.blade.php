@@ -39,9 +39,12 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('article.index') }}">Статьи</a>
                     </li>
-                    {{--                    <li class="nav-item ">--}}
-                    {{--                        <a class="nav-link" href="{{ route('category.index') }}">Категории</a>--}}
-                    {{--                    </li>--}}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('article.reader.index') }}">Статьи от читателей</a>
+                    </li>
+{{--                    <li class="nav-item ">--}}
+{{--                        <a class="nav-link" href="{{ route('category.index') }}">Категории</a>--}}
+{{--                    </li>--}}
                     @auth()
                         <li class="nav-item ">
                             <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
