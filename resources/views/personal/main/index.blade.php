@@ -29,7 +29,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ $data['articlesCount'] }}</h3>
+                                <h3>{{ $data['personalArticlesCount'] }}</h3>
                                 <p>Свои статьи</p>
                             </div>
                             <div class="icon">
@@ -44,7 +44,7 @@
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $data['commentsCount'] }}</h3>
-                                <p>Комментарии</p>
+                                <p>Свои комментарии</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-comments"></i>

@@ -9,8 +9,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Article extends Model
 {
-    use HasFactory, SoftDeletes;
-    use Sortable;
+    use HasFactory, SoftDeletes, Sortable;
 
     protected $table = 'articles';
     protected $guarded = false;
