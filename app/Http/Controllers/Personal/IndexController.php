@@ -18,8 +18,11 @@ class IndexController extends Controller
 
         $data['personalArticlesCount'] = Article::where('user_id', auth()->user()->id)->where('is_personal', 1)->get()->count();
 //        dd($a);
-
-//        $data['articlesCount'] = Article::where('user_id', auth()->user()->id)->where('is_personal', 1)->get()->count();
+        $data['subscrebedAuthorsCount'] = auth()->user()->subscribedAuthors()->count();
+//        dd($data['subscrebedAuthors']);
+//
+        $data['subscribersCount'] = auth()->user()->subscribers()->count();
+//        dd($data['subscribersCount']);
 //        $data['articlesCount'] = auth()->user()->withCount['articlesCount']->get();
 //        dd($data['articlesCount']);
         return view('personal.main.index', compact('data'));

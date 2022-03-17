@@ -31,28 +31,20 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Имя</th>
+                                    <th>Заголовок</th>
+                                    <th>Автор</th>
                                     <th colspan="2" class="text-center">Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($authors as $author)
+                                @foreach($articles as $article)
                                     <tr>
-                                        <td>{{ $author->id }}</td>
-                                        <td>{{ $author->name }}</td>
+                                        <td>{{ $article->id }}</td>
+                                        <td>{{ $article->title }}</td>
+                                        <td>{{ $article->author->name }}</td>
                                         <td class="text-center"><a
-                                                href="{{ route('article.show', $author->id) }}"><i
+                                                href="{{ route('article.show', $article->id) }}"><i
                                                     class="far fa-eye"></i></a></td>
-                                        <td>
-                                            <form action="{{ route('personal.subscription.delete', $author->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash text-danger" role="button"></i>
-                                                </button>
-                                            </form>
-                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

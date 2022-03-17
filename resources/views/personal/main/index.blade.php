@@ -44,23 +44,9 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>{{ $data['commentsCount'] }}</h3>
-                                <p>Свои комментарии</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            {{--                            <a href="{{ route('personal.post.index') }}" class="small-box-footer">Подробнее <i--}}
-                            {{--                                    class="fas fa-arrow-circle-right"></i></a>--}}
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ $data['personalArticlesCount'] }}</h3>
+                                <h3>{{ $data['subscrebedAuthorsCount'] }}</h3>
                                 <p>Любимые авторы</p>
                             </div>
                             <div class="icon">
@@ -76,7 +62,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ $data['personalArticlesCount'] }}</h3>
+                                <h3>{{ $data['subscribersCount'] }}</h3>
                                 <p>Подписчики</p>
                             </div>
                             <div class="icon">
@@ -86,6 +72,20 @@
                                 Подробнее
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ $data['commentsCount'] }}</h3>
+                                <p>Свои комментарии</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            {{--                            <a href="{{ route('personal.post.index') }}" class="small-box-footer">Подробнее <i--}}
+                            {{--                                    class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>
                     </div>
 

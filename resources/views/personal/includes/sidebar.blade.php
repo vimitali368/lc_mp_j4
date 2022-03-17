@@ -64,7 +64,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: none;">
+                    <ul class="nav nav-treeview navbar-collapse collapse text-right" style="display: none;">
                         <li class="nav-item">
                             <a href="{{ route('personal.subscription.article.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
@@ -90,7 +90,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: none;">
+                    <ul class="nav nav-treeview navbar-collapse collapse text-right" style="display: none;">
                         <li class="nav-item">
                             <a href="{{ route('personal.article.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>

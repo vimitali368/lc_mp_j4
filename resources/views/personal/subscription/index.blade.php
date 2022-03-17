@@ -8,11 +8,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Статьи любимых авторов</h1>
+                        <h1 class="m-0">Список любимых авторов</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                            </li>
                             <li class="breadcrumb-item active">Статьи любимых авторов</li>
                         </ol>
                     </div><!-- /.col -->
@@ -41,15 +42,16 @@
                                         <td>{{ $author->id }}</td>
                                         <td>{{ $author->name }}</td>
                                         <td class="text-center"><a
-                                                href="{{ route('article.show', $author->id) }}"><i
-                                                    class="far fa-eye"></i></a></td>
+                                                href="{{ route('personal.subscriber.show', $author->id) }}">
+                                                <i class="far fa-eye" title="Личный кабинет пользователя"></i></a></td>
                                         <td>
                                             <form action="{{ route('personal.subscription.delete', $author->id) }}"
                                                   method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash text-danger" role="button"></i>
+                                                    <i class="fas fa-flag text-danger" role="button"
+                                                       title="Отписаться"></i>
                                                 </button>
                                             </form>
                                         </td>
