@@ -35,6 +35,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Article::factory(40)->create();
+
+        $this->call([
+            ArticleTagsSeeder::class,
+            ArticleUsersSeeder::class,
+            AuthorReadersSeeder::class,
+        ]);
+
         Comment::factory(400)->create();
     }
 }

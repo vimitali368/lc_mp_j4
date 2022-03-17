@@ -11,7 +11,19 @@ class ShowController extends Controller
     public function __invoke(Article $article)
     {
         $date = Carbon::parse($article->created_at);
-        return view('article.show', compact('article', 'date'));
+
+        $relatedPosts = Article::whereHas('tags',
+            function ($q) use ($article) {
+                $q->whereIn('tags.id', $article->tags->pluck('id'));
+            })
+            ->where('id', '!=', $article->id)
+            ->get()
+            ->take(3);
+//        dd($relatedPosts);
+
+        event('articleHasViewed', $article);
+
+        return view('article.show', compact('article', 'date', 'relatedPosts'));
     }
 
 }

@@ -9,7 +9,8 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $articles = Article::paginate(6);
+        $articles = Article::withCount('likedUsers')->withCount('comments')->sortable()->paginate(6);
+//        dd($articles);
         return view('admin.article.index', compact('articles'));
     }
 }

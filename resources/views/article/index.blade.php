@@ -15,9 +15,36 @@
                                             <img src="{{ $article->preview_image }}" alt="blog post">
                                         </div>
                                     @endif
-                                    {{--                            <p class="blog-post-category">{{ $article->category->title }}</p>--}}
+                                    @if(isset($article->category))
+                                        <p class="blog-post-category">{{ $article->category->title }}</p>
+                                    @endif
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
+                                @auth()
+                                    <div>
+                                        <form action="{{ route('article.like.store', $article->id) }}" method="POST">
+                                            @csrf
+                                            <span>{{ $article->liked_users_count }}</span>
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                @if(auth()->user()->likedArticles->contains($article->id))
+                                                    <i class="fas fa-heart"></i>
+                                                @else
+                                                    <i class="far fa-heart"></i>
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span>{{ $article->liked_users_count }}</span>
+                                        <i class="far fa-heart"></i>
+                                    </div>
+                                @endguest
+                                <div>
+                                    <span>{{ $article->view_count }}</span>
+                                    <i class="far fa-eye"></i>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -27,6 +54,27 @@
                         </div>
                     </div>
                 </section>
+            @endif
+            @if($likedArticles->count() > 0)
+                <div class="col-md-4 sidebar" data-aos="fade-left" style="margin-bottom: 100px;">
+                    <div class="widget widget-post-list">
+                        <h5 class="widget-title">Фаворитные статьи</h5>
+                        <ul class="post-list">
+                            @foreach($likedArticles as $article)
+                                <li class="post">
+                                    <a href="{{ route('article.show', $article->id) }}" class="post-permalink media">
+                                        @if( $article->preview_image != '' )
+                                            <img src="{{ $article->preview_image }}" alt="blog post">
+                                        @endif
+                                        <div class="media-body">
+                                            <h6 class="post-title">{{ $article->title }}</h6>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             @endif
         </div>
     </main>

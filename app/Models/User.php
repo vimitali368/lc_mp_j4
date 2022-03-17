@@ -24,6 +24,8 @@ class User extends Authenticatable
         'password',
     ];
 
+//    protected $withCount = ['articles'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,6 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+//    protected $withCount = ['articles', 'comments', 'subscribedAuthors'];
+
     public function articles()
     {
         return $this->hasMany(Article::class, 'user_id', 'id');
@@ -57,4 +61,23 @@ class User extends Authenticatable
         return $this->can('banned');
     }
 
+    public function likedArticles()
+    {
+        return $this->belongsToMany(Article::class, 'article_user_likes', 'user_id', 'article_id');
+    }
+
+    public function subscribedAuthors()
+    {
+        return $this->belongsToMany(User::class, 'author_reader_subscriptions', 'reader_id', 'author_id');
+    }
+
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class, 'author_reader_subscriptions', 'author_id', 'reader_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }

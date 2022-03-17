@@ -6,16 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "mews/captcha": "^3.2",
-        "spatie/laravel-permission": "^5.5",
-      "ext-dom": "*",
-        "ext-libxml": "*"
+        "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

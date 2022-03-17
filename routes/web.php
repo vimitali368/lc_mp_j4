@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterCaptchaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,18 +21,84 @@ Route::group(['namespace' => 'Main'], function () {
 
 Auth::routes();
 
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => 'auth'], function () {
+    Route::get('/', 'IndexController')->name('personal.main.index');
+
+    Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+        Route::get('/', 'IndexController')->name('personal.article.index');
+        Route::get('/create', 'CreateController')->name('personal.article.create');
+        Route::post('/', 'StoreController')->name('personal.article.store');
+        Route::get('/{article}', 'ShowController')->name('personal.article.show');
+        Route::get('/{article}/edit', 'EditController')->name('personal.article.edit');
+        Route::patch('/{article}', 'UpdateController')->name('personal.article.update');
+        Route::delete('/{article}', 'DeleteController')->name('personal.article.delete');
+    });
+
+    Route::group(['namespace' => 'Like', 'prefix' => 'likes'], function () {
+        Route::get('/', 'IndexController')->name('personal.like.index');
+        Route::delete('/{article}', 'DeleteController')->name('personal.like.delete');
+    });
+
+    Route::group(['namespace' => 'Subscriber', 'prefix' => 'subscribers'], function () {
+        Route::get('/', 'IndexController')->name('personal.subscriber.index');
+        Route::get('/{reader}', 'ShowController')->name('personal.subscriber.show');
+    });
+
+    Route::group(['namespace' => 'Subscription', 'prefix' => 'subscriptions'], function () {
+        Route::get('/', 'IndexController')->name('personal.subscription.index');
+
+        Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+            Route::get('/', 'IndexController')->name('personal.subscription.article.index');
+        });
+
+        Route::group(['prefix' => '{author}'], function () {
+            Route::delete('/', 'DeleteController')->name('personal.subscription.delete');
+        });
+    });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+        Route::get('/{user}', 'ShowController')->name('personal.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('personal.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
+        Route::get('/{user}/change-password', 'ChangePasswordController')->name('personal.user.change-password');
+        Route::patch('/{user}/update-password', 'UpdatePasswordController')->name('personal.user.update-password');
+    });
+
+});
+
 Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
     Route::get('/', 'IndexController')->name('article.index');
     Route::get('/comment-reload-captcha', [\App\Http\Controllers\Article\Comment\CaptchaController::class, 'reloadCaptcha']);
 
-    Route::group(['prefix' => '{article}'], function () {
-        Route::get('/', 'ShowController')->name('article.show');
+    Route::group(['namespace' => 'Reader', 'prefix' => 'readers'], function () {
+        Route::get('/', 'IndexController')->name('article.reader.index');
+
+        Route::group(['namespace' => 'Author', 'prefix' => 'authors'], function () {
+            Route::group(['prefix' => '{author}'], function () {
+                Route::get('/', 'ShowController')->name('article.reader.author.show');
+
+                Route::group(['namespace' => 'Subscription', 'prefix' => 'subscriptions'], function () {
+                    Route::post('/', 'StoreController')->name('article.reader.author.subscription.store');
+                });
+            });
+
+        });
     });
 
-    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
-        Route::post('/', 'StoreController')->name('article.comment.store')->middleware('can:add comments');
+    Route::group(['prefix' => '{article}'], function () {
+        Route::get('/', 'ShowController')->name('article.show');
+
+        Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+            Route::post('/', 'StoreController')->name('article.comment.store')->middleware('can:add comments');
+        });
+
+        Route::group(['namespace' => 'Like', 'prefix' => 'likes'], function () {
+            Route::post('/', 'StoreController')->name('article.like.store');
+        });
     });
+
 });
+
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -59,7 +126,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     });
 
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
-        Route::get('/', 'IndexController')->name('admin.article.index')->middleware('role:administrator-user|editor-user|author-user|reader-user');
+        Route::get('/', 'IndexController')->name('admin.article.index')->middleware('role:administrator-user|editor-user|author-user|moderator-user|reader-user');
         Route::get('/create', 'CreateController')->name('admin.article.create')->middleware('can:add articles');
         Route::post('/', 'StoreController')->name('admin.article.store')->middleware('can:add articles');
         Route::get('/{article}', 'ShowController')->name('admin.article.show')->middleware('can:show articles');
@@ -85,7 +152,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::get('/{user}/ban', 'BanController')->name('admin.user.ban')->middleware('can:ban commentators');
         Route::get('/banned', 'BannedController')->name('admin.user.banned');
     });
-
 });
 
 Route::get('/register-reload-captcha', [RegisterCaptchaController::class, 'reloadCaptcha']);
+

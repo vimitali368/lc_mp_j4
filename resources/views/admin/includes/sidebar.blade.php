@@ -50,24 +50,24 @@
                         </a>
                     </li>
                 @endif
-                <li class="nav-item">
-                    <a href="{{ route('admin.article.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard"></i>
-                        <p>
-                            Статьи
-                        </p>
-                    </a>
-                </li>
                 @if(auth()->user()->hasRole('administrator-user|moderator-user'))
                     <li class="nav-item">
-                        <a href="{{ route('admin.comment.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-comments"></i>
+                        <a href="{{ route('admin.article.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-clipboard"></i>
                             <p>
-                                Комментарии
+                                Статьи
                             </p>
                         </a>
                     </li>
                 @endif
+                <li class="nav-item">
+                    <a href="{{ route('admin.comment.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Комментарии
+                        </p>
+                    </a>
+                </li>
                 @if(auth()->user()->hasRole('administrator-user'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">

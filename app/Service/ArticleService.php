@@ -35,9 +35,13 @@ class ArticleService
     {
         try {
             Db::beginTransaction();
-//            $tagIds = $data['tag_ids'];
-//            unset($data['tag_ids']);
-//        dd($tagIds);
+//            dd($data);
+            if (isset($data['tag_ids'])) {
+                $tagIds = $data['tag_ids'];
+                unset($data['tag_ids']);
+//                dd($tagIds);
+            }
+//            dd($data);
             if (isset($data['preview_image'])) {
                 $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
                 $data['preview_image'] = url('/storage/' . $data['preview_image']);
@@ -46,8 +50,12 @@ class ArticleService
                 $data['content'] = $this->htmlImagesFromDomToStorage($data['content']);
 //                dd($data['content']);
             }
+//            dd($data);
             $article = Article::firstOrCreate($data);
-//            $article->tags()->attach($tagIds);
+//            dd($article);
+            if (isset($tagIds)) {
+                $article->tags()->attach($tagIds);
+            }
             Db::commit();
         } catch (\Exception $exception) {
             Db::rollBack();
@@ -58,13 +66,14 @@ class ArticleService
     public function update($data, $article)
     {
         try {
+//            dd($data);
             Db::beginTransaction();
-//            if (isset($data['tag_ids'])) {
-//                $tagIds = $data['tag_ids'];
-//                unset($data['tag_ids']);
-//            } else {
-//                $tagIds = [];
-//            }
+            if (isset($data['tag_ids'])) {
+                $tagIds = $data['tag_ids'];
+                unset($data['tag_ids']);
+            } else {
+                $tagIds = [];
+            }
 //            dd($tagIds);
             if (isset($data['preview_image'])) {
 //                dd($data['preview_image'] );
@@ -73,7 +82,9 @@ class ArticleService
             }
 //            dd($data);
             $article->update($data);
-//            $article->tags()->sync($tagIds);
+            if (isset($tagIds)) {
+                $article->tags()->sync($tagIds);
+            }
 //            dd($article);
             Db::commit();
             return $article;
