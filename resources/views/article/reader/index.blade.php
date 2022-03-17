@@ -25,7 +25,7 @@
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
                                 <div>
-                                    <div class="float-left">
+                                    <div class="float-left w-25">
                                         @auth()
                                             <div>
                                                 <form action="{{ route('article.like.store', $article->id) }}"
@@ -49,10 +49,35 @@
                                             </div>
                                         @endguest
                                     </div>
-                                    <div class="float-right">
+                                    <div class="float-left w-25">
                                         <span>{{ $article->view_count }}</span>
                                         <i class="far fa-eye"></i>
                                     </div>`
+                                    <div class="float-left w-25">
+                                        @auth()
+                                            <div>
+                                                <form
+                                                    action="{{ route('article.reader.author.subscription.store', $article->user_id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    {{--                                        <span>{{ $article->liked_users_count }}</span>--}}
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        @if(auth()->user()->subscribedAuthors->contains($article->user_id))
+                                                            <i class="fas fa-flag"></i>
+                                                        @else
+                                                            <i class="far fa-flag"></i>
+                                                        @endif
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endauth
+                                        @guest()
+                                            <div>
+                                                {{--                                    <span>{{ $article->liked_users_count }}</span>--}}
+                                                <i class="far fa-flag"></i>
+                                            </div>
+                                        @endguest
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

@@ -25,7 +25,7 @@
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
                                 <div>
-                                    <div class="float-left">
+                                    <div class="float-left w-25">
                                         @auth()
                                             <div>
                                                 <form action="{{ route('article.like.store', $article->id) }}"
@@ -49,11 +49,11 @@
                                             </div>
                                         @endguest
                                     </div>
-                                    <div class="float-left">
+                                    <div class="float-left w-25">
                                         <span>{{ $article->view_count }}</span>
                                         <i class="far fa-eye"></i>
                                     </div>`
-                                    <div class="float-right">
+                                    <div class="float-left w-25">
                                         @auth()
                                             <div>
                                                 <form
