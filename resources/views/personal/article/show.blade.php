@@ -7,7 +7,6 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{ $article->title }}</h1>
                         @if(auth()->user()->can('edit articles'))
                         <a href="{{ route('personal.article.edit', $article->id) }}" class="text-success">
                             <i class="fas fa-pencil-alt"></i>

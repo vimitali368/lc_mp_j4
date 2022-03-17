@@ -8,10 +8,17 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="m-0 mr-2">{{ $article->title }}</h1>
+                        @if(auth()->user()->can('show articles'))
+                            <div>
+                                <a href="{{ route('article.show', $article->id) }}" class="mr-2">
+                                <i class="far fa-eye"></i>
+                                </a>
+                            </div>
+                        @endif
                         @if(auth()->user()->can('edit articles'))
-                        <a href="{{ route('admin.article.edit', $article->id) }}" class="text-success">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                            <a href="{{ route('admin.article.edit', $article->id) }}" class="text-success mr-1">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
                         @endif
                         @if(auth()->user()->can('delete articles'))
                             <form action="{{ route('admin.article.delete', $article->id) }}"

@@ -77,7 +77,7 @@
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview" style="display: none;">
+                        <ul class="nav nav-treeview navbar-collapse collapse text-right" style="display: none;">
                             <li class="nav-item">
                                 <a href="{{ route('admin.statistics.author') }}" class="nav-link">
                                     <i class="nav-icon fas fa-pen"></i>
@@ -104,7 +104,7 @@
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview" style="display: none;">
+                        <ul class="nav nav-treeview navbar-collapse collapse text-right" style="display: none;">
                             <li class="nav-item">
                                 <a href="{{ route('admin.user.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>

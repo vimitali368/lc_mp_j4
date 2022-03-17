@@ -41,8 +41,8 @@
                                         <td>{{ $subscriber->id }}</td>
                                         <td>{{ $subscriber->name }}</td>
                                         <td class="text-center"><a
-                                                href="{{ route('personal.subscriber.show', $subscriber->id) }}"><i
-                                                    class="far fa-eye"></i></a></td>
+                                                href="{{ route('personal.subscriber.show', $subscriber->id) }}">
+                                                <i class="far fa-eye" title="Личный кабинет пользователя"></i></a></td>
 {{--                                        <td>--}}
 {{--                                            <form action="{{ route('personal.subscription.delete', $subscriber->id) }}"--}}
 {{--                                                  method="POST">--}}
