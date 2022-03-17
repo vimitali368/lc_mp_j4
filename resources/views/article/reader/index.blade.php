@@ -18,37 +18,43 @@
                                     @if(isset($article->category))
                                         <p class="blog-post-category">{{ $article->category->title }}</p>
                                     @endif
-                                    <a href="{{ route('article.reader.author.show', $article->user_id) }}" class="blog-post-permalink">
-                                        <h6 class="edica-blog-post-meta">Автор: {{ $article->author->name }}</h6>
+                                    <a href="{{ route('article.reader.author.show', $article->user_id) }}"
+                                       class="blog-post-permalink">
+                                        <h5 class="blog-post-category">Автор: {{ $article->author->name }}</h5>
                                     </a>
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
+                                <div>
+                                    <div class="float-left">
+                                        @auth()
+                                            <div>
+                                                <form action="{{ route('article.like.store', $article->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    <span>{{ $article->liked_users_count }}</span>
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        @if(auth()->user()->likedArticles->contains($article->id))
+                                                            <i class="fas fa-heart"></i>
+                                                        @else
+                                                            <i class="far fa-heart"></i>
+                                                        @endif
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endauth
+                                        @guest()
+                                            <div>
+                                                <span>{{ $article->liked_users_count }}</span>
+                                                <i class="far fa-heart"></i>
+                                            </div>
+                                        @endguest
+                                    </div>
+                                    <div class="float-right">
+                                        <span>{{ $article->view_count }}</span>
+                                        <i class="far fa-eye"></i>
+                                    </div>`
+                                </div>
                             </div>
-                            {{--                            @auth()--}}
-                            {{--                                <div>--}}
-                            {{--                                    <form action="{{ route('article.like.store', $article->id) }}" method="POST">--}}
-                            {{--                                        @csrf--}}
-                            {{--                                        <span>{{ $article->liked_users_count }}</span>--}}
-                            {{--                                        <button type="submit" class="border-0 bg-transparent">--}}
-                            {{--                                            @if(auth()->user()->likedArticles->contains($article->id))--}}
-                            {{--                                                <i class="fas fa-heart"></i>--}}
-                            {{--                                            @else--}}
-                            {{--                                                <i class="far fa-heart"></i>--}}
-                            {{--                                            @endif--}}
-                            {{--                                        </button>--}}
-                            {{--                                    </form>--}}
-                            {{--                                </div>--}}
-                            {{--                            @endauth--}}
-                            {{--                            @guest()--}}
-                            {{--                                <div>--}}
-                            {{--                                    <span>{{ $article->liked_users_count }}</span>--}}
-                            {{--                                    <i class="far fa-heart"></i>--}}
-                            {{--                                </div>--}}
-                            {{--                            @endguest--}}
-                            {{--                            <div>--}}
-                            {{--                                <span>{{ $article->view_count }}</span>--}}
-                            {{--                                <i class="far fa-eye"></i>--}}
-                            {{--                            </div>--}}
                         @endforeach
                     </div>
                     <div class="row">
