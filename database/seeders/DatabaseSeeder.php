@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ArticleTagsSeeder::class,
+            ArticleUsersSeeder::class,
+            AuthorReadersSeeder::class,
         ]);
 
         Comment::factory(400)->create();

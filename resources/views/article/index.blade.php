@@ -20,31 +20,31 @@
                                     @endif
                                     <h6 class="blog-post-title">{{ $article->title }}</h6>
                                 </a>
-                            </div>
-                            @auth()
-                                <div>
-                                    <form action="{{ route('article.like.store', $article->id) }}" method="POST">
-                                        @csrf
+                                @auth()
+                                    <div>
+                                        <form action="{{ route('article.like.store', $article->id) }}" method="POST">
+                                            @csrf
+                                            <span>{{ $article->liked_users_count }}</span>
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                @if(auth()->user()->likedArticles->contains($article->id))
+                                                    <i class="fas fa-heart"></i>
+                                                @else
+                                                    <i class="far fa-heart"></i>
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endauth
+                                @guest()
+                                    <div>
                                         <span>{{ $article->liked_users_count }}</span>
-                                        <button type="submit" class="border-0 bg-transparent">
-                                            @if(auth()->user()->likedArticles->contains($article->id))
-                                                <i class="fas fa-heart"></i>
-                                            @else
-                                                <i class="far fa-heart"></i>
-                                            @endif
-                                        </button>
-                                    </form>
-                                </div>
-                            @endauth
-                            @guest()
+                                        <i class="far fa-heart"></i>
+                                    </div>
+                                @endguest
                                 <div>
-                                    <span>{{ $article->liked_users_count }}</span>
-                                    <i class="far fa-heart"></i>
+                                    <span>{{ $article->view_count }}</span>
+                                    <i class="far fa-eye"></i>
                                 </div>
-                            @endguest
-                            <div>
-                                <span>{{ $article->view_count }}</span>
-                                <i class="far fa-eye"></i>
                             </div>
                         @endforeach
                     </div>
@@ -56,7 +56,7 @@
                 </section>
             @endif
             @if($likedArticles->count() > 0)
-                <div class="col-md-4 sidebar" data-aos="fade-left">
+                <div class="col-md-4 sidebar" data-aos="fade-left" style="margin-bottom: 100px;">
                     <div class="widget widget-post-list">
                         <h5 class="widget-title">Фаворитные статьи</h5>
                         <ul class="post-list">

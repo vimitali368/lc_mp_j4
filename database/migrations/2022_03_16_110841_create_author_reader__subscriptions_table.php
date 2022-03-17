@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReaderAuthorSubscriptionsTable extends Migration
+class CreateAuthorReaderSubscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReaderAuthorSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reader_author_subscriptions', function (Blueprint $table) {
+        Schema::create('author_reader_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reader_id');
             $table->unsignedBigInteger('author_id');
@@ -36,6 +36,6 @@ class CreateReaderAuthorSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reader_author_subscriptions');
+        Schema::dropIfExists('author_reader_subscriptions');
     }
 }

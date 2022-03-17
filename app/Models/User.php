@@ -68,12 +68,12 @@ class User extends Authenticatable
 
     public function subscribedAuthors()
     {
-        return $this->belongsToMany(User::class, 'reader_author_subscriptions', 'reader_id', 'author_id');
+        return $this->belongsToMany(User::class, 'author_reader_subscriptions', 'reader_id', 'author_id');
     }
 
     public function subscribers()
     {
-        return $this->belongsToMany(User::class, 'reader_author_subscriptions', 'author_id', 'reader_id');
+        return $this->belongsToMany(User::class, 'author_reader_subscriptions', 'author_id', 'reader_id');
     }
 
     public function category()

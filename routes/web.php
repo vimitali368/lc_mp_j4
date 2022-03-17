@@ -46,7 +46,14 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
 
     Route::group(['namespace' => 'Subscription', 'prefix' => 'subscriptions'], function () {
         Route::get('/', 'IndexController')->name('personal.subscription.index');
-        Route::delete('/{author}', 'DeleteController')->name('personal.subscription.delete');
+
+        Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
+            Route::get('/', 'IndexController')->name('personal.subscription.article.index');
+        });
+
+        Route::group(['prefix' => '{author}'], function () {
+            Route::delete('/', 'DeleteController')->name('personal.subscription.delete');
+        });
     });
 
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {

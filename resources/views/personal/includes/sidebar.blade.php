@@ -57,12 +57,30 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('personal.subscription.index') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-flag"></i>
                         <p>
-                            Статьи любимых авторов
+                            Любимые авторы
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('personal.subscription.article.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Статьи авторов
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('personal.subscription.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Список авторов</p>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
